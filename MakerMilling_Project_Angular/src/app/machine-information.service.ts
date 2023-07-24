@@ -1,4 +1,4 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {MachineMainStateService} from "./machine-main-state.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {debounceTime} from "rxjs";

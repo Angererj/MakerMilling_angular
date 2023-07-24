@@ -65,9 +65,6 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.testfunctionInformations();
-    this.testFunctionState();
-    this.testFunctionActiveSession();
-    this.testFunctionCurrentTool();
+    this.machineMainStateService.ngOnInit();
   }
 }
