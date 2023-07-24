@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit{
 }
   ngOnInit() {
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
-    this.machineInformationService.machineName.subscribe(value=>{
+    this.machineInformationService.machineType.subscribe(value=>{
       console.log(value)
     })
 

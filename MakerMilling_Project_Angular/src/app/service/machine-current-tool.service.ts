@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {MachineMainStateService} from "./machine-main-state.service";
-import {debounceTime} from "rxjs";
+import {debounceTime, Subject} from "rxjs";
 import {environment} from "../../environments/enviroments";
 
 @Injectable({
@@ -12,9 +11,13 @@ export class MachineCurrentToolService {
   private baseUrl:string = environment.baseUrl;
   private appKey:string= environment.appKey;
 
-  constructor(private http: HttpClient) {
+  toolArticleNumber = new Subject<string>();
+  toolDominatingProperty = new Subject<string>();
+  toolImageUrl = new Subject<string>();
+  toolDescription = new Subject<string>();
+  toolName = new Subject<string>();
 
-  }
+  constructor(private http: HttpClient) {}
 
   public getToolArticleNumber(){
       const url = this.baseUrl + 'JA_SE.MakerMillingCurrentTool.Thing/Properties/articleNumber';
@@ -23,10 +26,8 @@ export class MachineCurrentToolService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].articleNumber)
-        return result.rows[0].articleNumber;
+        this.toolArticleNumber.next(result.rows[0].articleNumber);
       });
-
   }
 
   public getToolDominatingProperty(){
@@ -36,10 +37,8 @@ export class MachineCurrentToolService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].dominatingProperty)
-        return result.rows[0].dominatingProperty;
+        this.toolDominatingProperty.next(result.rows[0].dominatingProperty);
       });
-
   }
 
   public getToolImageUrl(){
@@ -49,10 +48,8 @@ export class MachineCurrentToolService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].imageUrl)
-        return result.rows[0].imageUrl;
+        this.toolImageUrl.next(result.rows[0].imageUrl);
       });
-
   }
 
   public getToolDescription(){
@@ -62,10 +59,8 @@ export class MachineCurrentToolService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].toolDescription)
-        return result.rows[0].toolDescription;
+        this.toolDescription.next(result.rows[0].toolDescription);
       });
-
   }
 
   public getToolName(){
@@ -75,9 +70,7 @@ export class MachineCurrentToolService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].toolName)
-        return result.rows[0].toolName;
+        this.toolName.next(result.rows[0].toolName);
       });
-
   }
 }

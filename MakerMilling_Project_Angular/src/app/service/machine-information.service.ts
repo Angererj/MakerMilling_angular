@@ -12,7 +12,13 @@ export class MachineInformationService{
   private baseUrl= environment.baseUrl
   private appKey = environment.appKey;
 
-  machineName= new Subject<string>();
+  machineType= new Subject<string>();
+  machineNumber = new Subject<string>();
+  machineLocation = new Subject<string>();
+  machineFloor = new Subject<string>();
+  machineSoftwareVersion = new Subject<string>();
+  machineRequiresTraining = new Subject<string>();
+
 constructor(private http: HttpClient) {
 }
 
@@ -23,8 +29,7 @@ constructor(private http: HttpClient) {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-
-        this.machineName.next(  result.rows[0].machineType);
+        this.machineType.next(  result.rows[0].machineType);
       });
 
   }
@@ -36,8 +41,7 @@ constructor(private http: HttpClient) {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineNumber)
-        return result.rows[0].machineNumber;
+        this.machineNumber.next(result.rows[0].machineNumber);
       });
 
   }
@@ -50,8 +54,7 @@ constructor(private http: HttpClient) {
       'accept': 'application/json'
     });
     this.http.get<any>(url, {'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-      //console.log(result.rows[0].machineLocation)
-      return result.rows[0].machineLocation;
+      this.machineLocation.next(result.rows[0].machineLocation);
     });
   }
 
@@ -62,8 +65,7 @@ constructor(private http: HttpClient) {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineOnFloor)
-        return result.rows[0].machineOnFloor;
+        this.machineFloor.next(result.rows[0].machineOnFloor);
       });
 
   }
@@ -75,8 +77,7 @@ constructor(private http: HttpClient) {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineNextSoftwareVersion)
-        return result.rows[0].machineNextSoftwareVersion;
+        this.machineSoftwareVersion.next(result.rows[0].machineNextSoftwareVersion);
       });
   }
 
@@ -88,8 +89,7 @@ constructor(private http: HttpClient) {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].requiresTraining)
-        return result.rows[0].requiresTraining;
+        this.machineRequiresTraining.next(result.rows[0].requiresTraining);
       });
 
   }

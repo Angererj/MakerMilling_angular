@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {MachineMainStateService} from "./machine-main-state.service";
 import {debounceTime, Subject} from "rxjs";
 import {environment} from "../../environments/enviroments";
 
@@ -11,7 +10,22 @@ export class MachineStateService {
 
   private baseUrl:string = environment.baseUrl
   private appKey:string = environment.appKey;
+
   tankPressureInput= new Subject<string>();
+  tankPressureOutput= new Subject<string>();
+  fabmanIsActive = new Subject<string>();
+  machineRuntimeCombined = new Subject<string>();
+  lastNotificationMessage = new Subject<string>();
+  lastNotificationType = new Subject<string>();
+  liveCameraFeedUrl = new Subject<string>();
+  machineTank1Empty = new Subject<string>();
+  machineTank2 = new Subject<string>();
+  machineIsActive = new Subject<string>();
+  machineExecutionState = new Subject<string>();
+  machineStatusLight = new Subject<string>();
+  machineVacuumIsActived = new Subject<string>();
+  machineVacuumPressure = new Subject<string>();
+
   constructor(private http: HttpClient) {
 
   }
@@ -23,8 +37,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].fabmanIsActive)
-        return result.rows[0].fabmanIsActive;
+        this.fabmanIsActive.next(result.rows[0].fabmanIsActive);
       });
 
   }
@@ -36,8 +49,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].formattedRuntimeCombined)
-        return result.rows[0].formattedRuntimeCombined;
+        this.machineRuntimeCombined.next(result.rows[0].formattedRuntimeCombined);
       });
 
   }
@@ -49,8 +61,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].latestNotificationMessage)
-        return result.rows[0].latestNotificationMessage;
+        this.lastNotificationMessage.next(result.rows[0].latestNotificationMessage);
       });
   }
 
@@ -61,8 +72,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].latestNotificationType)
-        return result.rows[0].latestNotificationType;
+        this.lastNotificationType.next(result.rows[0].latestNotificationType);
       });
 
   }
@@ -74,8 +84,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].liveFeedImageUrl)
-        return result.rows[0].liveFeedImageUrl;
+        this.liveCameraFeedUrl.next(result.rows[0].liveFeedImageUrl);
       });
 
   }
@@ -87,8 +96,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineIsActive)
-        return result.rows[0].machineIsActive;
+        this.machineIsActive.next(result.rows[0].machineIsActive);
       });
 
   }
@@ -100,8 +108,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineSpraysystemTank1Empty)
-        return result.rows[0].machineSpraysystemTank1Empty;
+        this.machineTank1Empty.next(result.rows[0].machineSpraysystemTank1Empty);
       });
 
   }
@@ -113,8 +120,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineSpraySystemTank2)
-        return result.rows[0].machineSpraySystemTank2;
+        this.machineTank2.next(result.rows[0].machineSpraySystemTank2());
       });
 
   }
@@ -126,8 +132,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineState)
-        return result.rows[0].machineState;
+        this.machineExecutionState.next(result.rows[0].machineState);
       });
 
   }
@@ -139,8 +144,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].rgbStringVuforia)
-        return result.rows[0].rgbStringVuforia;
+        this.machineStatusLight.next(result.rows[0].rgbStringVuforia);
       });
 
   }
@@ -152,7 +156,6 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineTankPressureInput)
         this.tankPressureInput.next(result.rows[0].machineTankPressureInput);
       });
 
@@ -165,8 +168,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineTankPressureOutput)
-        return result.rows[0].machineTankPressureOutput;
+        this.tankPressureOutput.next(result.rows[0].machineTankPressureOutput);
       });
 
   }
@@ -178,8 +180,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineVacuumIsActivated)
-        return result.rows[0].machineVacuumIsActivated;
+        this.machineVacuumIsActived.next(result.rows[0].machineVacuumIsActivated);
       });
 
   }
@@ -191,8 +192,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineVacuumPressure)
-        return result.rows[0].machineVacuumPressure;
+        this.machineVacuumPressure.next(result.rows[0].machineVacuumPressure);
       });
     }
 

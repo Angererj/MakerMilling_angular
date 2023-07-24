@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MachineMainStateService} from "./machine-main-state.service";
-import {debounceTime} from "rxjs";
+import {debounceTime, Subject} from "rxjs";
 import {environment} from "../../environments/enviroments";
 
 @Injectable({
@@ -12,9 +12,18 @@ export class MachineActiveSessionService {
   private baseUrl:string = environment.baseUrl;
   private appKey:string=environment.appKey
 
-  constructor(private http: HttpClient,) {
+  loggedInSince  = new Subject<string>();
+  loggedInUser = new Subject<string>();
+  activeProgramName = new Subject<string>();
+  activeProgramDirectory = new Subject<string>();
+  activeProgramExecutionTime = new Subject<string>();
+  activeProgramExecutionTimeLeft = new Subject<string>();
+  activeProgramType = new Subject<string>();
+  activeProgramPreviewImage = new Subject<string>();
+  activeProgramProgess = new Subject<string>();
 
-  }
+
+  constructor(private http: HttpClient) {}
 
   public getLoggedInSince(){
       const url = this.baseUrl + 'JA_SE.MakerMillingActivatedSession.Thing/Properties/loggedInSince';
@@ -23,10 +32,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].loggedInSince)
-        return result.rows[0].loggedInSince;
+        this.loggedInSince.next(result.rows[0].loggedInSince);
       });
-
   }
 
   public getLoggedInUserName(){
@@ -36,10 +43,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].loggedInUserName)
-        return result.rows[0].loggedInUserName;
+        this.loggedInUser.next(result.rows[0].loggedInUserName);
       });
-
   }
 
   public getMachineActivatedProgramName(){
@@ -49,10 +54,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineActivatedProgramName)
-        return result.rows[0].machineActivatedProgramName;
+        this.activeProgramName.next(result.rows[0].machineActivatedProgramName);
       });
-
   }
 
   public getMachineActivatedProgramDirectory(){
@@ -62,10 +65,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineActivatedProgramDirectory)
-        return result.rows[0].machineActivatedProgramDirectory;
+        this.activeProgramDirectory.next(result.rows[0].machineActivatedProgramDirectory);
       });
-
   }
   public getMachineActivatedProgramExecutionTime(){
       const url = this.baseUrl + 'JA_SE.MakerMillingActivatedSession.Thing/Properties/machineActivatedProgramExecutionTime';
@@ -74,10 +75,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineActivatedProgramExecutionTime)
-        return result.rows[0].machineActivatedProgramExecutionTime;
+        this.activeProgramExecutionTime.next(result.rows[0].machineActivatedProgramExecutionTime);
       });
-
   }
 
   public getMachineActivatedProgramExecutionTimeLeft(){
@@ -87,10 +86,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineActivatedProgramExecutionLeftTime)
-        return result.rows[0].machineActivatedProgramExecutionLeftTime;
+        this.activeProgramExecutionTimeLeft.next(result.rows[0].machineActivatedProgramExecutionLeftTime);
       });
-
   }
 
   public getMachineActivatedProgramPreviewImage(){
@@ -100,10 +97,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineActivatedProgramPreviewImage)
-        return result.rows[0].machineActivatedProgramPreviewImage;
+        this.activeProgramPreviewImage.next(result.rows[0].machineActivatedProgramPreviewImage);
       });
-
   }
 
   public getMachineActivatedProgramProgress(){
@@ -113,10 +108,8 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineActivatedProgramProgressRounded)
-        return result.rows[0].machineActivatedProgramProgressRounded;
+        this.activeProgramProgess.next(result.rows[0].machineActivatedProgramProgressRounded);
       });
-
   }
 
   public getMachineActivatedProgramType(){
@@ -126,9 +119,7 @@ export class MachineActiveSessionService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log(result.rows[0].machineActivatedProgramType)
-        return result.rows[0].machineActivatedProgramType;
+        this.activeProgramType.next(result.rows[0].machineActivatedProgramType);
       });
     }
-
 }
