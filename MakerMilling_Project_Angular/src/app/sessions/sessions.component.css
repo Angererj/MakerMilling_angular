@@ -1,0 +1,8 @@
+.sidebar{
+  width: 30vw;
+}
+.flexBox{
+  display: flex;
+  flex-direction: row;
+  font-weight: 100;
+}
