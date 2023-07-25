@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {debounceTime} from "rxjs";
+import {debounceTime, Subject} from "rxjs";
 import {environment} from "../../environments/enviroments";
+import {SessionObject} from "../model/session";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,10 @@ import {environment} from "../../environments/enviroments";
 export class DatatableService {
   baseUrl = environment.baseUrl;
   appKey = environment.appKey;
+  dataSubject = new Subject<any>();
+
+
+
   constructor(private http: HttpClient) { }
 
 
@@ -19,17 +24,21 @@ export class DatatableService {
       'appKey': this.appKey,
       'accept': 'application/json'
     });
+    let httpOptions = { headers: headers /*, withCredentials: true */ };
 
     // You don't need to pass the headers as a separate object in the post method
     // The headers should be directly passed as the third parameter
-    this.http.post(url, null, { headers: headers }).subscribe(
+    this.http.post(url, null, httpOptions).subscribe(
       (result) => {
-        console.log(result);
+        this.dataSubject.next(result)
       },
       (error) => {
         console.error(error);
       }
     );
+
+
   }
+
 
 }

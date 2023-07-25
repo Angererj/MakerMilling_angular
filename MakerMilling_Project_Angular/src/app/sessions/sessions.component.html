@@ -1,17 +1,17 @@
-<body>
+<div class="session-table-container">
+  <div class="session-collection">
 
-<div class="flexBox">
-    <div class="sidebar">
-
+    <h1>Sessions</h1>
+    <button routerLink="/dashboard">Zurück</button>
+    <div class="session-item" *ngFor="let item of dataEntry">
+      <div class="session-item-row">
+        <span class="start-time">{{ item.fabmanStart | date: 'dd.MM.yyyy HH:mm' }}</span>
+        <span class="end-time">{{ item.fabmanEnd | date: 'dd.MM.yyyy HH:mm' }}</span>
+      </div>
+      <div class="session-item-row">
+        <p class="spindle-time">Spindellaufzeit: {{ item.spindleTimeDuration }}</p>
+        <p class="price">Preis: {{ item.price }}</p>
+      </div>
     </div>
-    <div class="content">
-        <div class="topStateDisplay">
-
-        </div>
-
-        <div class="innerContent">
-            asd
-        </div>
-    </div>
+  </div>
 </div>
-</body>

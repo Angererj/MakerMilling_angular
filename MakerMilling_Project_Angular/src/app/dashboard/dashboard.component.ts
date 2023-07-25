@@ -4,6 +4,7 @@ import {MachineInformationService} from "../service/machine-information.service"
 import {MachineStateService} from "../service/machine-state.service";
 import {MachineActiveSessionService} from "../service/machine-active-session.service";
 import {MachineCurrentToolService} from "../service/machine-current-tool.service";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -44,11 +45,12 @@ export class DashboardComponent implements OnInit {
               private machineInformationService: MachineInformationService,
               private machineActiveSession: MachineActiveSessionService,
               private machineStateService: MachineStateService,
-              private machineCurrentTool: MachineCurrentToolService) {
+              private machineCurrentTool: MachineCurrentToolService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
-
+    console.log(this.userService.getFullname())
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
 
 

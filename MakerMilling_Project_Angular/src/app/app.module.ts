@@ -11,14 +11,16 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
+import {AuthGuard} from "./auth.guard";
+import {CommonModule} from "@angular/common";
 
 
 
 const routes: Routes = [
-  {path:'sessions',component:SessionsComponent},
-  {path:'dashboard',component:DashboardComponent},
+  {path:'sessions',component:SessionsComponent, canActivate: [AuthGuard] },
+  {path:'dashboard',component:DashboardComponent, canActivate: [AuthGuard] },
   {path: 'login',component:LoginComponent},
-  {path:'**',redirectTo:'/dashboard'}
+  {path:'**',redirectTo:'/login'}
 
 ]
 
@@ -38,7 +40,7 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
