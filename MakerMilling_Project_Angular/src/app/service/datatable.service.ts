@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {debounceTime} from "rxjs";
+import {environment} from "../../environments/enviroments";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DatatableService {
+  baseUrl = environment.baseUrl;
+  appKey = environment.appKey;
+  constructor(private http: HttpClient) { }
+
+
+  public getDatatable() {
+    const url = this.baseUrl + 'JA_SE.MakerMillingSessionsTable.DataTable/Services/GetDataTableEntries';
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json', // The correct header name is 'Content-Type', not 'content-type'
+      'appKey': this.appKey,
+      'accept': 'application/json'
+    });
+
+    // You don't need to pass the headers as a separate object in the post method
+    // The headers should be directly passed as the third parameter
+    this.http.post(url, null, { headers: headers }).subscribe(
+      (result) => {
+        console.log(result);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+}

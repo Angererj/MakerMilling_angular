@@ -120,7 +120,7 @@ export class MachineStateService {
         'appKey': this.appKey,
         'accept': 'application/json'});
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        this.machineTank2.next(result.rows[0].machineSpraySystemTank2());
+        this.machineTank2.next(result.rows[0].machineSpraySystemTank2);
       });
 
   }

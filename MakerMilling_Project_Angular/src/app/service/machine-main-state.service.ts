@@ -74,8 +74,7 @@ export class MachineMainStateService {
     this.http.get<any>(url, { 'headers': headers }).subscribe(
       (result) => {
         this.globalMachineState = result.rows[0].globalMachineIsActive;
-
-        if( this.globalMachineState = true){
+        if( this.globalMachineState == true){
           this.executeAllServices();
 
         }

@@ -1,7 +1,10 @@
-.content{
+body{
   width: 100vw;
   height: 100vh;
-  background: #ecefff;
+  background: #0e1b59;
+}
+html{
+
 }
 form{
   height:70vh;

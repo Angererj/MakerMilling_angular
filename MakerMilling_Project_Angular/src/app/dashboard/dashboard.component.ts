@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {MachineMainStateService} from "../service/machine-main-state.service";
 import {MachineInformationService} from "../service/machine-information.service";
 import {MachineStateService} from "../service/machine-state.service";
@@ -10,73 +10,133 @@ import {MachineCurrentToolService} from "../service/machine-current-tool.service
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit{
-/***
- * constructor(private machineMainStateService: MachineMainStateService,
- *               private machineInformationService: MachineInformationService,
- *               private machineStateService: MachineStateService,
- *               private machineActiveSessionService: MachineActiveSessionService,
- *               private machineCurrentToolService: MachineCurrentToolService) {}
- *
- *   private testfunctionInformations(){
- *     this.machineInformationService.getMachineType();
- *     this.machineInformationService.getMachineNumber();
- *     this.machineInformationService.getMachineSoftwareVersion();
- *     this.machineInformationService.getMachineRequiresTraining();
- *     this.machineInformationService.getMachineLocation();
- *     this.machineInformationService.getMachineFloor();
- *   }
- *
- *   private testFunctionState(){
- *     this.machineStateService.getFabmanIsActive();
- *     this.machineStateService.getRuntimeCombined();
- *     this.machineStateService.getLastNotificationMessage();
- *     this.machineStateService.getLastNotificationType();
- *     this.machineStateService.getLiveFeedImageUrl();
- *     this.machineStateService.getMachineIsActive();
- *     this.machineStateService.getSpraySystemTank1Empty();
- *     this.machineStateService.getSpraySystemTank2();
- *     this.machineStateService.getMachineExecutionState();
- *     this.machineStateService.getMachineStatusLight();
- *     this.machineStateService.getMachineTankPressureInput();
- *     this.machineStateService.getMachineTankPressureOutput();
- *     this.machineStateService.getMachineVacuumIsActivated();
- *     this.machineStateService.getMachineVacuumPressure();
- *   }
- *
- *   private testFunctionActiveSession(){
- *     this.machineActiveSessionService.getLoggedInSince();
- *     this.machineActiveSessionService.getLoggedInUserName();
- *     this.machineActiveSessionService.getMachineActivatedProgramName();
- *     this.machineActiveSessionService.getMachineActivatedProgramDirectory();
- *     this.machineActiveSessionService.getMachineActivatedProgramType();
- *     this.machineActiveSessionService.getMachineActivatedProgramExecutionTime();
- *     this.machineActiveSessionService.getMachineActivatedProgramExecutionTimeLeft();
- *     this.machineActiveSessionService.getMachineActivatedProgramProgress();
- *     this.machineActiveSessionService.getMachineActivatedProgramPreviewImage();
- *   }
- *
- *   private testFunctionCurrentTool(){
- *     this.machineCurrentToolService.getToolName();
- *     this.machineCurrentToolService.getToolDescription();
- *     this.machineCurrentToolService.getToolArticleNumber();
- *     this.machineCurrentToolService.getToolDominatingProperty();
- *     this.machineCurrentToolService.getToolImageUrl();
- *   }
- * */
+export class DashboardComponent implements OnInit {
+  tankPressureInput = "";
+  tankPressureOutput = "";
+  machineTank1Empty = "";
+  machineTank2 = "";
+  machineVacuum="";
+  runtimeCombined="";
+  machineState="";
+  machineRGBState="";
+
+  machineNumber="";
+  machineName ="";
+  machineFloor ="";
+  machineLocation="";
+  machineSoftwareVersion="";
+
+  notificationType ="";
+  notificationMessage="";
+
+  activeProgramProgress ="";
+  activeProgramTimeLeft =""
+  activeProgramTimeExecution =""
+  activeProgramName =""
+  activeProgramType =""
+  activeProgramDirectory =""
+
+  toolName="";
+  toolDescription="";
+  toolArticleNr="";
+  toolProperty="";
   constructor(private machineMainStateService: MachineMainStateService,
               private machineInformationService: MachineInformationService,
-              private machineStateService: MachineStateService,){
+              private machineActiveSession: MachineActiveSessionService,
+              private machineStateService: MachineStateService,
+              private machineCurrentTool: MachineCurrentToolService) {
+  }
 
-}
   ngOnInit() {
+
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
-    this.machineInformationService.machineType.subscribe(value=>{
-      console.log(value)
-    })
+
 
     this.machineStateService.tankPressureInput.subscribe(value => {
-      console.log(value)
+      this.tankPressureInput = value;
+    })
+    this.machineStateService.tankPressureOutput.subscribe(value => {
+      this.tankPressureOutput = value;
+    })
+    this.machineStateService.machineTank1Empty.subscribe(value => {
+      this.machineTank1Empty = value;
+    })
+    this.machineStateService.machineTank2.subscribe(value => {
+      this.machineTank2 = value;
+    })
+    this.machineStateService.machineVacuumPressure.subscribe(value => {
+      this.machineVacuum = value;
+    })
+    this.machineStateService.machineExecutionState.subscribe(value => {
+      this.machineState = value;
+    })
+    this.machineStateService.machineStatusLight.subscribe(value => {
+      this.machineRGBState = value;
+    })
+
+
+
+    this.machineInformationService.machineNumber.subscribe(value => {
+      this.machineNumber = value;
+    })
+    this.machineInformationService.machineType.subscribe(value => {
+      this.machineName = value;
+    })
+    this.machineInformationService.machineFloor.subscribe(value => {
+      this.machineFloor = value;
+    })
+    this.machineInformationService.machineLocation.subscribe(value => {
+      this.machineLocation = value;
+    })
+    this.machineInformationService.machineSoftwareVersion.subscribe(value => {
+      this.machineSoftwareVersion = value;
+    })
+
+
+    this.machineStateService.lastNotificationType.subscribe(value => {
+      this.notificationType = value;
+    })
+
+    this.machineStateService.lastNotificationMessage.subscribe(value => {
+      this.notificationMessage = value;
+    })
+
+    this.machineStateService.machineRuntimeCombined.subscribe(value => {
+      this.runtimeCombined = value;
+    })
+
+
+  this.machineActiveSession.activeProgramName.subscribe(value => {
+    this.activeProgramName= value;
+  })
+  this.machineActiveSession.activeProgramDirectory.subscribe(value=>{
+        this.activeProgramDirectory = value;
+    })
+    this.machineActiveSession.activeProgramType.subscribe(value =>{
+      this.activeProgramType = value;
+    })
+    this.machineActiveSession.activeProgramProgess.subscribe(value =>{
+      this.activeProgramProgress = value;
+    })
+    this.machineActiveSession.activeProgramExecutionTime.subscribe(value => {
+      this.activeProgramTimeExecution = value;
+    })
+    this.machineActiveSession.activeProgramExecutionTimeLeft.subscribe(value => {
+      this.activeProgramTimeLeft = value;
+    })
+
+
+    this.machineCurrentTool.toolDescription.subscribe(value => {
+      this.toolDescription = value;
+    })
+    this.machineCurrentTool.toolName.subscribe(value => {
+      this.toolName = value;
+    })
+    this.machineCurrentTool.toolArticleNumber.subscribe(value => {
+      this.toolArticleNr = value;
+    })
+    this.machineCurrentTool.toolDominatingProperty.subscribe(value => {
+      this.toolProperty = value;
     })
   }
 }
