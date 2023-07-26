@@ -190,3 +190,45 @@ th{
   border: none;
   border-radius: 3px;
 }
+
+@media screen and (max-width: 768px) {
+  .grid-container {
+    grid-template-areas:
+      'info'
+      'activeprogram'
+      'logMessage'
+      'pressure'
+      'spraysystem'
+      'livecam'
+      'spindletime'
+      'status'
+      'sessions'
+      'activetool';
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+  }
+
+  /* Additional styling for individual items (adjust as needed) */
+  .item1,
+  .item2,
+  .item3,
+  .item4,
+  .item5,
+  .item6,
+  .item7,
+  .item8,
+  .item9,
+  .item10 {
+    width: 100%;
+    margin: 0;
+    padding:2vh
+  }
+
+  .item9 {
+    height: auto; /* Adjust height as needed for responsiveness */
+  }
+
+  .item10 {
+    margin: 1rem 0;
+  }
+}
