@@ -12,10 +12,7 @@ export class DatatableService {
   appKey = environment.appKey;
   dataSubject = new Subject<any>();
 
-
-
   constructor(private http: HttpClient) { }
-
 
   public getDatatable() {
     const url = this.baseUrl + 'JA_SE.MakerMillingSessionsTable.DataTable/Services/GetDataTableEntries';
@@ -36,9 +33,5 @@ export class DatatableService {
         console.error(error);
       }
     );
-
-
   }
-
-
 }

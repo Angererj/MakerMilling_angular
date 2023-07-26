@@ -84,10 +84,13 @@ th{
 .item2 > .imgContainer{
   width: 100%;
   height:40%;
-  background-position: center; /* Center the image */
-  background-image: url("https://www.holzundleim.de/wp-content/uploads/2020/04/CNC_3781.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover; /* Resize the background image to cover the entire container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item2 > .imgContainer > .image_warning{
+  font-weight: lighter;
+  color: #707070;
 }
 .item2 > table {
   width: 90%;
@@ -172,12 +175,11 @@ th{
   flex: 1;
 }
 .item9 > .imgContainer{
-  background: url("https://thingworx.grandgarage.eu:8443/Thingworx/MediaEntities/JA_SE.MakerMillingToolInSpindleImage.Media?1689924254172");
   width: 100%;
   height:30%;
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat;
-  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .item9 > table{
   height: 55%;

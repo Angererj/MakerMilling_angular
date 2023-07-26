@@ -29,9 +29,6 @@ ngOnInit() {
         this.dataEntry = this.dataEntry.filter(entry => entry.fullname === this.fullname);
         // @ts-ignore
         this.dataEntry = this.dataEntry.filter(entry => entry.fullname !== "");
-
-
       })
-
 }
 }

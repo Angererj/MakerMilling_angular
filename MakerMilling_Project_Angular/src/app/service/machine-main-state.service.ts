@@ -7,6 +7,7 @@ import {MachineActiveSessionService} from "./machine-active-session.service";
 import {MachineCurrentToolService} from "./machine-current-tool.service";
 import {AppComponent} from "../app.component";
 import {environment} from "../../environments/enviroments";
+import {MachineImagesService} from "./machine-images.service";
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,9 @@ export class MachineMainStateService {
     this.machineCurrentToolService.getToolArticleNumber();
     this.machineCurrentToolService.getToolDominatingProperty();
     this.machineCurrentToolService.getToolImageUrl();
+    this.machineImageService.getToolInSpindleImage();
+    this.machineImageService.getProgramPreviewImage();
+    //this.machineImageService.getLiveCameraFeed();
   }
 
 
@@ -61,7 +65,8 @@ export class MachineMainStateService {
               private machineInformationService: MachineInformationService,
               private machineStateService: MachineStateService,
               private machineActiveSessionService: MachineActiveSessionService,
-              private machineCurrentToolService: MachineCurrentToolService){ }
+              private machineCurrentToolService: MachineCurrentToolService,
+              private machineImageService: MachineImagesService){ }
 
 
   public getGlobalMachineIsActive() {

@@ -5,6 +5,7 @@ import {MachineStateService} from "../service/machine-state.service";
 import {MachineActiveSessionService} from "../service/machine-active-session.service";
 import {MachineCurrentToolService} from "../service/machine-current-tool.service";
 import {UserService} from "../service/user.service";
+import {MachineImagesService} from "../service/machine-images.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,47 +13,51 @@ import {UserService} from "../service/user.service";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  tankPressureInput = "";
-  tankPressureOutput = "";
-  machineTank1Empty = "";
-  machineTank2 = "";
-  machineVacuum="";
-  runtimeCombined="";
-  machineState="";
-  machineRGBState="";
+  tankPressureInput= "";
+  tankPressureOutput= "";
+  machineTank1Empty= "";
+  machineTank2= "";
+  machineVacuum= "";
+  runtimeCombined= "";
+  machineState= "";
+  machineRGBState= "";
 
-  machineNumber="";
-  machineName ="";
-  machineFloor ="";
-  machineLocation="";
-  machineSoftwareVersion="";
+  machineNumber= "";
+  machineName= "";
+  machineFloor= "";
+  machineLocation= "";
+  machineSoftwareVersion= "";
 
-  notificationType ="";
-  notificationMessage="";
+  notificationType= "";
+  notificationMessage= "";
 
-  activeProgramProgress ="";
-  activeProgramTimeLeft =""
-  activeProgramTimeExecution =""
-  activeProgramName =""
-  activeProgramType =""
-  activeProgramDirectory =""
+  activeProgramProgress= "";
+  activeProgramTimeLeft= ""
+  activeProgramTimeExecution = ""
+  activeProgramName= ""
+  activeProgramType= ""
+  activeProgramDirectory= ""
 
-  toolName="";
-  toolDescription="";
-  toolArticleNr="";
-  toolProperty="";
+  toolName= "";
+  toolDescription= "";
+  toolArticleNr= "";
+  toolProperty= "";
+
+  toolInSpindleImage = "";
+  programPreviewImage = "";
+
   constructor(private machineMainStateService: MachineMainStateService,
               private machineInformationService: MachineInformationService,
               private machineActiveSession: MachineActiveSessionService,
               private machineStateService: MachineStateService,
               private machineCurrentTool: MachineCurrentToolService,
-              private userService: UserService) {
+              private userService: UserService,
+              private imageService: MachineImagesService) {
   }
 
   ngOnInit() {
     console.log(this.userService.getFullname())
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
-
 
     this.machineStateService.tankPressureInput.subscribe(value => {
       this.tankPressureInput = value;
@@ -139,6 +144,14 @@ export class DashboardComponent implements OnInit {
     })
     this.machineCurrentTool.toolDominatingProperty.subscribe(value => {
       this.toolProperty = value;
+    })
+
+    this.imageService.toolInSpindleImage.subscribe(value => {
+      this.toolInSpindleImage = value;
+    })
+    this.imageService.programPreviewImage.subscribe(value => {
+      this.programPreviewImage = value;
+      console.log("IMAGE: " + value)
     })
   }
 }

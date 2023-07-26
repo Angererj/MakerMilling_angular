@@ -82,7 +82,6 @@ constructor(private http: HttpClient) {
   }
 
   public getMachineRequiresTraining(){
-
       const url = this.baseUrl + 'JA_SE.MakerMillingInformations.Thing/Properties/requiresTraining';
       const headers= new HttpHeaders({
         'content-type': 'application/json',
@@ -91,7 +90,6 @@ constructor(private http: HttpClient) {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineRequiresTraining.next(result.rows[0].requiresTraining);
       });
-
   }
 
 }
