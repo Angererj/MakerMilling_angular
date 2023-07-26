@@ -3,6 +3,8 @@ import {DatatableService} from "../service/datatable.service";
 import {UserService} from "../service/user.service";
 import {SessionObject} from "../model/session";
 import {DatePipe} from "@angular/common";
+import {setUserAuthenticated} from "../../environments/enviroments";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sessions',
@@ -14,9 +16,13 @@ export class SessionsComponent implements OnInit{
    dataEntry:any;
   array1: any;
   fullname:string="";
-  constructor(private datatableService: DatatableService, private userService: UserService) {
+  constructor(private datatableService: DatatableService, private userService: UserService,private router: Router) {
 }
+logOut(){
+setUserAuthenticated(false)
+  this.router.navigate(['/login']);
 
+}
 
 ngOnInit() {
      this.fullname = this.userService.getFullname();

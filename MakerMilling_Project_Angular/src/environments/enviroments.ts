@@ -8,10 +8,11 @@ export const environment = {
   programPreviewImageEntity: "JA_SE.MakerMillingActiveProgramImage.Media",
   machineIpAdress: "http://10.3.0.128",
   liveCamera: ":44347/mjpg/video.mjpg",
-  userIsAuthenticated: true
+  userIsAuthenticated: false
 
 };
 
 export function setUserAuthenticated(isAuthenticated: boolean): void {
+  console.log(environment.userIsAuthenticated)
   environment.userIsAuthenticated = isAuthenticated;
 }

@@ -1,11 +1,16 @@
 <div class="content">
 
-  <div class="topStateDisplay" [ngStyle]="{
+  <div class="topStateDisplay"  [ngStyle]="{
   '-webkit-box-shadow': '0px 0px 46px 11px'  +machineRGBState,
   '-moz-box-shadow': '0px 0px 46px 11px ' +machineRGBState,
   'box-shadow': '0px 0px 46px 11px '+machineRGBState
 }">
-    <h1>MLCube</h1>
+    <img height="20vw" src="assets/gg-icon.svg">
+      <h1>MakerMilling</h1>
+
+    <a routerLink="/dashboard" class="topStateDisplay-sessions">Dashboard</a>
+    <a routerLink="/sessions" class="topStateDisplay-sessions">Sessions</a>
+    <a (click)="logOut()">Abmelden</a>
 
   </div>
   <div class="innerContent">
@@ -34,42 +39,44 @@
             <td>{{machineLocation}}</td>
           </tr>
         </table>
+
       </div>
       <div class="item2">
         <h3>Aktives Programm</h3>
-
         <div class="imgContainer">
+
           <img *ngIf="programPreviewImage != 'data:image/png;base64,'" [src]="programPreviewImage" class="image_Preview">
           <p *ngIf="programPreviewImage == 'data:image/png;base64,'" class="image_warning">Kein Bild verfügbar</p>
         </div>
-        <table>
-          <tr>
-            <th>Fortschritt:</th>
-            <td>{{activeProgramProgress}}</td>
-          </tr>
-          <tr>
-            <th>Verbleibend:</th>
-            <td>{{activeProgramTimeLeft}}</td>
-          </tr>
-          <tr>
-            <th>Ausführungszeit:</th>
-            <td>{{activeProgramTimeExecution}}</td>
-          </tr>
-          <tr>
-            <th>Name:</th>
-            <td>{{activeProgramName}}</td>
-          </tr>
-          <tr>
-            <th>Dateityp:</th>
-            <td>{{activeProgramType}}</td>
-          </tr>
-          <tr>
-            <th>Speicherort:</th>
-            <td>{{activeProgramDirectory}}</td>
-          </tr>
-        </table>
+        <div class="scrollableTableContainer">
+          <table>
+            <tr>
+              <th>Fortschritt:</th>
+              <td>{{activeProgramProgress}}</td>
+            </tr>
+            <tr>
+              <th>Verbleibend:</th>
+              <td>{{activeProgramTimeLeft}}</td>
+            </tr>
+            <tr>
+              <th>Ausführungszeit:</th>
+              <td>{{activeProgramTimeExecution}}</td>
+            </tr>
+            <tr>
+              <th>Name:</th>
 
-
+              <td>{{activeProgramName}}</td>
+            <tr>
+            <tr>
+              <th>Dateityp:</th>
+              <td>{{activeProgramType}}</td>
+            </tr>
+            <tr>
+              <th>Speicherort:</th>
+              <td>{{activeProgramDirectory}}</td>
+            </tr>
+          </table>
+        </div>
       </div>
       <div class="item3">
         <p class="infoText">{{notificationType}}</p>
@@ -114,18 +121,14 @@
       </div>
       <div class="item6">LiveCam</div>
       <div class="item7">
-
         <p class="infoText">Bewegungszeit der Spindel</p>
         <p class="underleadingText">{{runtimeCombined}}</p>
-
       </div>
       <div class="item8">
         <div id="status-light__status" [ngStyle]="{'background-color': machineRGBState}"></div>
-
         <!-- Content -->
         <div class="status-light__content">{{machineState}}</div>
       </div>
-      <button class="item10" routerLink="/sessions">Sessions</button>
       <div class="item9">
         <h3>Aktives Werkzeug</h3>
         <div class="imgContainer">
@@ -135,7 +138,6 @@
           <tr>
             <th>Name:</th>
             <td>{{toolName}}
-
             </td>
           </tr>
           <tr>

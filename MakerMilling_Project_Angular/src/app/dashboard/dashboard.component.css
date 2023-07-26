@@ -1,13 +1,41 @@
-
-.topStateDisplay{
+.topStateDisplay {
   background: white;
-  width: 100%;
-
+  width: 100vw;
   display: flex;
-  flex-direction: row;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
 }
-.topStateDisplay > img{
-  height: 10vh;
+.topStateDisplay > h1{
+  width: 100%;
+  text-align: center;
+  padding: 1vh;
+  font-weight: 100;
+  color: #1e1e1e;
+}
+.topStateDisplay img {
+  margin-left:3vw;
+  height: 2vw; /* Adjust the height of the image as needed */
+  margin-right: 10px; /* Add some spacing to the right of the image */
+}
+
+.topStateDisplay h1 {
+  margin: 0; /* Remove default margin for h1 */
+
+  text-align: center;
+}
+
+.topStateDisplay a:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.topStateDisplay a {
+  transition: 0.3s;
+  margin: 0 10px; /* Add some spacing between the elements */
+  text-decoration: none; /* Remove underline from links */
+  color: #1e1e1e; /* Set the text color for links */
+}
+.topStateDisplay a:last-child {
+  margin-right: 5vw; /* Remove the right margin from the last link to align it to the right edge */
 }
 
 .innerContent{
@@ -22,22 +50,22 @@
 .item7 { grid-area: spindletime; }
 .item9 { grid-area: activetool; }
 .item8 { grid-area: status; }
-.item10 { grid-area: sessions; }
 
 .grid-container {
   height: 83vh;
   display: grid;
   grid-template-areas:
-    'info  info         logMessage logMessage logMessage logMessage  spindletime spindletime'
-    'info  info         pressure  pressure    spraysystem spraysystem   sessions status'
-    'activeprogram activeprogram livecam  livecam livecam livecam activetool activetool'
-    'activeprogram activeprogram  livecam livecam livecam livecam     activetool activetool'
-    'activeprogram activeprogram livecam livecam  livecam livecam    activetool activetool';
-  gap: 1.5vw;
+    'info info logMessage logMessage logMessage logMessage spindletime  spindletime spindletime'
+    'info info  pressure pressure spraysystem    spraysystem spraysystem   status status'
+    'activeprogram activeprogram activeprogram livecam livecam livecam  livecam activetool activetool'
+    'activeprogram activeprogram activeprogram livecam livecam livecam livecam activetool activetool';
   padding: 1.5vw;
+  gap: 1.5vw;
   grid-template-rows: 10vh;
-  grid-template-columns:  10vw;
+  grid-template-columns: repeat(9, 1fr); /* Updated grid-template-columns */
 }
+
+
 
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
@@ -46,6 +74,10 @@
   -webkit-box-shadow: 2px 5px 8px -5px rgba(145,145,145,1);
   -moz-box-shadow: 2px 5px 8px -5px rgba(145,145,145,1);
   box-shadow: 2px 5px 8px -5px rgba(145,145,145,1);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  width: 100%;
 }
 .grid-container > .item1 > table {
   width:90%;
@@ -65,13 +97,7 @@ th{
   text-align: left;
   font-weight: lighter;
 }
-.topStateDisplay > h1{
-  width: 100%;
-  text-align: center;
-  padding: 1vh;
-  font-weight: 100;
-  color: #1e1e1e;
-}
+
 .innerContent{
   width: 100%;
 }
@@ -88,13 +114,12 @@ th{
   justify-content: center;
   align-items: center;
 }
-.item2 > .imgContainer > .image_warning{
+.item2  > .image_warning{
   font-weight: lighter;
   color: #707070;
 }
-.item2 > .imgContainer > .image_Preview{
-  width: 50%;
-  height: 70%;
+.item2   > .image_Preview{
+  width: 30%;
 }
 .item2 > table {
   width: 90%;
@@ -148,8 +173,6 @@ th{
   padding-left: 10%;
 }
 .item8{
-  height: 50%;
-  margin-top: 15%;
   display: table;
 
 }
@@ -192,14 +215,8 @@ th{
 .item9 > table{
   height: 55%;
 }
-.item10{
-  height: 30%;
-  margin:35% 0;
-  background: #279813;
-  color: white;
-  border: none;
-  border-radius: 3px;
-}
+
+
 
 @media screen and (max-width: 768px) {
   .grid-container {
@@ -227,9 +244,9 @@ th{
   .item6,
   .item7,
   .item8,
-  .item9,
-  .item10 {
-    width: 100%;
+  .item9
+ {
+    width: 30vw;
     margin: 0;
     padding:2vh
   }
@@ -238,7 +255,72 @@ th{
     height: auto; /* Adjust height as needed for responsiveness */
   }
 
-  .item10 {
-    margin: 1rem 0;
-  }
+
+}
+
+.table-container {
+  /* Add this style to make the table scrollable */
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+td {
+  /* Add this style to ensure the content inside td is scrollable */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+tr{
+  line-height: 150%;
+}
+/* Existing styles ... */
+
+.item2 > .imgContainer {
+  width: 100%; /* Set a fixed width for the image container */
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide any overflowing image */
+}
+
+.item2 > .imgContainer > .image_Preview {
+  height: 100%; /* Maintain aspect ratio */
+  object-fit: cover; /* Scale the image to cover the container while preserving its aspect ratio */
+}
+
+.item2 > .image_warning {
+  font-weight: lighter;
+  color: #707070;
+  text-align: center;
+}
+/* Existing styles ... */
+
+/* Existing styles ... */
+
+.item1,
+.item2 {
+  width: 25vw;
+  overflow: hidden; /* Hide any overflowing content */
+}
+.item1 > table {
+  width: 100%; /* Set the width of the table to 100% to fill the container */
+}
+.scrollableTableContainer {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling when table content overflows */
+}
+
+.scrollableTableContainer table {
+  width: auto; /* Set the width of the table to auto to expand as needed */
+  table-layout: auto; /* Use auto layout to adjust column widths based on content */
+}
+
+.scrollableTableContainer td {
+  white-space: nowrap; /* Prevent line breaks within table cells */
+}
+
+/* Rest of the existing styles ... */
+.item1 > table{
+  width: 100%;
 }

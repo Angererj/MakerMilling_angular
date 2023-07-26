@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {debounceTime} from "rxjs";
+import {debounceTime, Subject} from "rxjs";
 import {environment, setUserAuthenticated} from "../../environments/enviroments";
 import {UserObject} from "../model/user";
 import {Router, RouterModule} from "@angular/router";
@@ -14,7 +14,7 @@ export class UserService {
   baseUrl = environment.baseUrl;
   appKey = environment.appKey;
   userUrl = environment.userUrl;
-
+  errorMsgSubject = new Subject<string>();
   private fullname: any;
 
   setFullname(data: string): void {
@@ -23,7 +23,7 @@ export class UserService {
   getFullname(): any {
     return this.fullname;
   }
-  public checkUser(user: UserObject){
+  public checkUser(user: UserObject): any{
     const url = "https://thingworx.grandgarage.eu:8443/Thingworx/Things/JA_SE.MakerMillingMainStateMachine.Thing/Properties/globalMachineIsActive";
    var test = window.btoa(user.username+":"+user.password);
     const headers = new HttpHeaders({
@@ -38,11 +38,13 @@ export class UserService {
     this.http.get(url,  httpOptions).subscribe(
       (result) => {
         setUserAuthenticated(true);
-        this.getUserData(user)
+        this.getUserData(user);
+        this.errorMsgSubject.next("");
 
       },
       (error) => {
         setUserAuthenticated(false);
+        this.errorMsgSubject.next("Fehler Überprüfe deine Anmeldedaten");
       }
     );
   }

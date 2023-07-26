@@ -6,6 +6,8 @@ import {MachineActiveSessionService} from "../service/machine-active-session.ser
 import {MachineCurrentToolService} from "../service/machine-current-tool.service";
 import {UserService} from "../service/user.service";
 import {MachineImagesService} from "../service/machine-images.service";
+import {environment, setUserAuthenticated} from "../../environments/enviroments";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -46,17 +48,22 @@ export class DashboardComponent implements OnInit {
   toolInSpindleImage = "";
   programPreviewImage = "";
 
+  logOut(){
+    setUserAuthenticated(false);
+    this.router.navigate(['/login']);
+
+  }
   constructor(private machineMainStateService: MachineMainStateService,
               private machineInformationService: MachineInformationService,
               private machineActiveSession: MachineActiveSessionService,
               private machineStateService: MachineStateService,
               private machineCurrentTool: MachineCurrentToolService,
               private userService: UserService,
-              private imageService: MachineImagesService) {
+              private imageService: MachineImagesService,private router: Router) {
   }
 
   ngOnInit() {
-    console.log(this.userService.getFullname())
+    this.machineMainStateService.getGlobalMachineIsActive();
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
 
     this.machineStateService.tankPressureInput.subscribe(value => {

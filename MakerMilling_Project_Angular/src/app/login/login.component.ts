@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit{
     'username': new FormControl(null),
     'password': new FormControl(null)
   },);
-
+   errormsg = "";
   constructor(private userService: UserService) {
 }
   ngOnInit(){
@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit{
 
   onSubmit(){
     let user: UserObject = Object.assign({},this.regForm?.value)
-this.userService.checkUser(user)
+    this.userService.checkUser(user)
+    this.userService.errorMsgSubject.subscribe(data=>{
+        this.errormsg = data
+    })
   }
 }
