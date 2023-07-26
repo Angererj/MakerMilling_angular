@@ -6,5 +6,4 @@ export interface SessionObject {
   location: Object,
   price: string,
   spindleTimeDuration: string,
-
 }

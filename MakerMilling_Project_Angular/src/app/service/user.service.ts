@@ -44,7 +44,7 @@ export class UserService {
       },
       (error) => {
         setUserAuthenticated(false);
-        this.errorMsgSubject.next("Fehler Überprüfe deine Anmeldedaten");
+        this.errorMsgSubject.next("Fehler: Überprüfe deine Anmeldedaten.");
       }
     );
   }
@@ -60,6 +60,5 @@ export class UserService {
       this.setFullname(result.rows[0].firstName + " "+ result.rows[0].lastName)
         this.router.navigate(['/dashboard']);
     });
-
   }
 }

@@ -48,18 +48,14 @@ export class DashboardComponent implements OnInit {
   toolInSpindleImage = "";
   programPreviewImage = "";
 
-  logOut(){
-    setUserAuthenticated(false);
-    this.router.navigate(['/login']);
 
-  }
   constructor(private machineMainStateService: MachineMainStateService,
               private machineInformationService: MachineInformationService,
               private machineActiveSession: MachineActiveSessionService,
               private machineStateService: MachineStateService,
               private machineCurrentTool: MachineCurrentToolService,
               private userService: UserService,
-              private imageService: MachineImagesService,private router: Router) {
+              private imageService: MachineImagesService) {
   }
 
   ngOnInit() {
@@ -158,7 +154,6 @@ export class DashboardComponent implements OnInit {
     })
     this.imageService.programPreviewImage.subscribe(value => {
       this.programPreviewImage = value;
-      console.log("IMAGE: " + value)
     })
   }
 }

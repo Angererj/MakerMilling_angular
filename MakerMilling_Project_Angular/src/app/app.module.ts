@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "./auth.guard";
 import {CommonModule} from "@angular/common";
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     SessionsComponent,
     DashboardComponent,
     LoginComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -83,7 +83,7 @@ export class MachineMainStateService {
           this.executeAllServices();
         }
         else{
-          console.log("Maschine ist nicht erreichbar");
+          console.log("Maschine ist nicht erreichbar.");
         }
       },
       (error) => {

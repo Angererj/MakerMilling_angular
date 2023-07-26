@@ -1,18 +1,5 @@
 <div class="content">
 
-  <div class="topStateDisplay"  [ngStyle]="{
-  '-webkit-box-shadow': '0px 0px 46px 11px'  +machineRGBState,
-  '-moz-box-shadow': '0px 0px 46px 11px ' +machineRGBState,
-  'box-shadow': '0px 0px 46px 11px '+machineRGBState
-}">
-    <img height="20vw" src="assets/gg-icon.svg">
-      <h1>MakerMilling</h1>
-
-    <a routerLink="/dashboard" class="topStateDisplay-sessions">Dashboard</a>
-    <a routerLink="/sessions" class="topStateDisplay-sessions">Sessions</a>
-    <a (click)="logOut()">Abmelden</a>
-
-  </div>
   <div class="innerContent">
     <div class="grid-container">
       <div class="item1">
