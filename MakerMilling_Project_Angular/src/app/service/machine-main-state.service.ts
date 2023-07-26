@@ -81,7 +81,6 @@ export class MachineMainStateService {
         this.globalMachineState = result.rows[0].globalMachineIsActive;
         if( this.globalMachineState == true){
           this.executeAllServices();
-
         }
         else{
           console.log("Maschine ist nicht erreichbar");

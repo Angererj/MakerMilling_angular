@@ -39,7 +39,7 @@
         <h3>Aktives Programm</h3>
 
         <div class="imgContainer">
-          <img *ngIf="programPreviewImage != 'data:image/png;base64,'" [src]="programPreviewImage">
+          <img *ngIf="programPreviewImage != 'data:image/png;base64,'" [src]="programPreviewImage" class="image_Preview">
           <p *ngIf="programPreviewImage == 'data:image/png;base64,'" class="image_warning">Kein Bild verfügbar</p>
         </div>
         <table>
@@ -129,7 +129,7 @@
       <div class="item9">
         <h3>Aktives Werkzeug</h3>
         <div class="imgContainer">
-          <img [src]="toolInSpindleImage">
+          <img [src]="toolInSpindleImage" class="image_Preview">
         </div>
         <table>
           <tr>
