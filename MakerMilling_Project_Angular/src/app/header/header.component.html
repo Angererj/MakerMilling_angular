@@ -4,8 +4,7 @@
   'box-shadow': '0px 0px 46px 11px '+machineRGBState
 }">
   <img height="20vw" src="assets/gg-icon.svg">
-  <h1>MakerMilling</h1>
-
+  <h1 >MakerMilling</h1>
   <a routerLink="/dashboard" class="topStateDisplay-sessions" *ngIf="environment.userIsAuthenticated">Dashboard</a>
   <a routerLink="/sessions" class="topStateDisplay-sessions" *ngIf="environment.userIsAuthenticated">Sessions</a>
   <a (click)="logOut()" *ngIf="environment.userIsAuthenticated">Abmelden</a>

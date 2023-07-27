@@ -179,7 +179,20 @@ th{
 
 
 @media screen and (max-width: 768px) {
+  .item2 > .imgContainer> .image_Preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide any overflowing image */
+  }
+
+  .grid-container > div {
+    width: auto;
+  }
   .grid-container {
+
+    background:#d7d7d7;
+    height: auto;
     grid-template-areas:
       'info'
       'activeprogram'
@@ -193,9 +206,11 @@ th{
       'activetool';
     grid-template-rows: auto;
     grid-template-columns: 1fr;
+    gap: 5vh;
   }
 
   /* Additional styling for individual items (adjust as needed) */
+
   .item1,
   .item2,
   .item3,
@@ -210,7 +225,9 @@ th{
     margin: 0;
     padding:2vh
   }
-
+  .item1{
+    margin-top: 5vh;
+  }
   .item9 {
     height: auto; /* Adjust height as needed for responsiveness */
   }

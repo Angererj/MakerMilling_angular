@@ -24,15 +24,29 @@
 }
 
 .topStateDisplay a:hover {
-  opacity: 0.7;
+  opacity: 0.8;
   cursor: pointer;
 }
 .topStateDisplay a {
-  transition: 0.3s;
+  transition: 0.3s ;
   margin: 0 10px; /* Add some spacing between the elements */
   text-decoration: none; /* Remove underline from links */
   color: #1e1e1e; /* Set the text color for links */
 }
 .topStateDisplay a:last-child {
   margin-right: 5vw; /* Remove the right margin from the last link to align it to the right edge */
+}
+@media screen and (max-width: 768px) {
+  .topStateDisplay{
+    flex-direction: column;
+  }
+  .topStateDisplay > img{
+    display: none;
+  }
+  .topStateDisplay > a{
+      margin: 1vh 0;
+  }
+  .topStateDisplay a:last-child {
+    margin-right: 0; /* Remove the right margin from the last link to align it to the right edge */
+  }
 }

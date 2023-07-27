@@ -2,10 +2,15 @@
   <div class="session-collection">
 
     <h1>Sessions</h1>
-    <button routerLink="/dashboard">Zurück</button>
+    <span class="noSessionsText" *ngIf="isEmpty">Keine Sessions vorhanden</span>
+
     <div class="session-item" *ngFor="let item of dataEntry">
       <div class="session-item-row">
+        <span>Start:</span>
+
         <span class="start-time">{{ item.fabmanStart | date: 'dd.MM.yyyy HH:mm' }}</span>
+        <span>Ende:</span>
+
         <span class="end-time">{{ item.fabmanEnd | date: 'dd.MM.yyyy HH:mm' }}</span>
       </div>
       <div class="session-item-row">

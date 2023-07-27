@@ -5,6 +5,7 @@ import {SessionObject} from "../model/session";
 import {DatePipe} from "@angular/common";
 import {setUserAuthenticated} from "../../environments/enviroments";
 import {Router} from "@angular/router";
+import {isEmpty} from "rxjs";
 
 @Component({
   selector: 'app-sessions',
@@ -12,9 +13,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./sessions.component.css']
 })
 export class SessionsComponent implements OnInit{
-    dataTable: any[] =[]
+  isEmpty:any;
    dataEntry:any;
-  array1: any;
   fullname:string="";
   constructor(private datatableService: DatatableService, private userService: UserService,private router: Router) {
 }
@@ -30,9 +30,15 @@ ngOnInit() {
   this.datatableService.getDatatable();
       this.datatableService.dataSubject.subscribe(data=>{
         this.dataEntry = data.rows;
-        console.log(this.dataEntry)
+         console.log(this.dataEntry)
         // @ts-ignore
         this.dataEntry = this.dataEntry.filter(entry => entry.fullname === this.fullname);
+       if(this.dataEntry.length == 0){
+        this.isEmpty = true
+       }
+       else{
+         this.isEmpty = false
+       }
         // @ts-ignore
         this.dataEntry = this.dataEntry.filter(entry => entry.fullname !== "");
       })
