@@ -115,6 +115,14 @@ th{
   height: 70%;
   margin-left: 10%;
 }
+.item6{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item6 > .image_liveCam{
+  height: 95%;
+}
 .item7 {
   display: table;
 }

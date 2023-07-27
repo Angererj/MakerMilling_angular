@@ -15,11 +15,11 @@ export class MachineImagesService {
   private appKey:string= environment.appKey;
   private toolInSpindleImageEntity:string = environment.toolInSpindleImageEntity;
   private programPreviewImageEntity:string = environment.programPreviewImageEntity;
-  private liveCameraUrl:string = environment.machineIpAdress + environment.liveCamera;
+  private liveCameraImageEntity:string = environment.liveCameraImageEntity;
 
   toolInSpindleImage = new Subject<string>();
   programPreviewImage = new Subject<string>();
-  liveCameraFeed = new Subject<string>();
+  liveCameraImage = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -51,15 +51,13 @@ export class MachineImagesService {
   }
 
   public getLiveCameraFeed(){
-    const url = this.liveCameraUrl;
+    const url = this.imageUrl + this.liveCameraImageEntity;
     const headers= new HttpHeaders({
       'content-type': 'application/json',
       'appKey': this.appKey,
-      'accept': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET'});
+      'accept': 'application/json'});
     this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-      this.liveCameraFeed.next(result);
+      this.liveCameraImage.next('data:image/png;base64,' + result.content);
     });
   }
 }

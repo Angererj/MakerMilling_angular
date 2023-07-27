@@ -6,9 +6,9 @@ export const environment = {
   imageUrl: "https://thingworx.grandgarage.eu:8443/Thingworx/MediaEntities/",
   toolInSpindleImageEntity: "JA_SE.MakerMillingToolInSpindleImage.Media",
   programPreviewImageEntity: "JA_SE.MakerMillingActiveProgramImage.Media",
+  liveCameraImageEntity: "JA_SE.MakerMillingLiveCameraFeedImage.Media",
   machineIpAdress: "http://10.3.0.128",
-  liveCamera: ":44347/mjpg/video.mjpg",
-  userIsAuthenticated: true
+  userIsAuthenticated: false
 
 };
 

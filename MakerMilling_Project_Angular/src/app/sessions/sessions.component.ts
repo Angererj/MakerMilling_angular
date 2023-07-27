@@ -30,7 +30,7 @@ ngOnInit() {
   this.datatableService.getDatatable();
       this.datatableService.dataSubject.subscribe(data=>{
         this.dataEntry = data.rows;
-         console.log(this.dataEntry)
+        //console.log(this.dataEntry)
         // @ts-ignore
         this.dataEntry = this.dataEntry.filter(entry => entry.fullname === this.fullname);
        if(this.dataEntry.length == 0){

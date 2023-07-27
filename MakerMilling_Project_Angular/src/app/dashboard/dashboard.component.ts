@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   toolInSpindleImage = "";
   programPreviewImage = "";
-
+  liveCameraImage = "";
 
   constructor(private machineMainStateService: MachineMainStateService,
               private machineInformationService: MachineInformationService,
@@ -154,6 +154,9 @@ export class DashboardComponent implements OnInit {
     })
     this.imageService.programPreviewImage.subscribe(value => {
       this.programPreviewImage = value;
+    })
+    this.imageService.liveCameraImage.subscribe(value => {
+      this.liveCameraImage = value;
     })
   }
 }

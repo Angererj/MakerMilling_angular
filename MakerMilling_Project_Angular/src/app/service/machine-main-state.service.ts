@@ -56,7 +56,7 @@ export class MachineMainStateService {
     this.machineCurrentToolService.getToolImageUrl();
     this.machineImageService.getToolInSpindleImage();
     this.machineImageService.getProgramPreviewImage();
-    //this.machineImageService.getLiveCameraFeed();
+    this.machineImageService.getLiveCameraFeed();
   }
 
 
