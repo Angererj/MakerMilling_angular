@@ -1,6 +1,4 @@
-.innerContent{
-  padding-top: 2vh;
-}
+
 .item1 { grid-area: info; }
 .item2 { grid-area: activeprogram; }
 .item3 { grid-area: logMessage; }
@@ -62,11 +60,11 @@ th{
   width: 100%;
 }
 .content{
+  padding-top: 10vh;
   background: #d7d7d7;
+  overflow-y: hidden;
 }
-.innerContent{
-  height: 90vh;
-}
+
 .item2 > .imgContainer{
   width: 100%;
   height:40%;
@@ -145,28 +143,20 @@ th{
 
 }
 .item8 {
-  /* Center the content */
   align-items: center;
   display: flex;
 }
 
 #status-light__status {
-  /* Background color */
 
-  /* Rounded border */
   border-radius: 9999px;
-
-  /* Size */
   height: 2rem;
   width: 2rem;
-
-  /* Spacing */
   margin-right:3rem;
   margin-left: 1rem;
 }
 
 .status-light__content {
-  /* Take available width */
   flex: 1;
 }
 .item9 > .imgContainer{
@@ -191,9 +181,11 @@ th{
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Hide any overflowing image */
+    overflow: hidden;
   }
-
+  .content{
+    padding-top: 20vh;
+  }
   .grid-container > div {
     width: auto;
   }
@@ -203,22 +195,22 @@ th{
     height: auto;
     grid-template-areas:
       'info'
+         'status'
       'activeprogram'
       'logMessage'
       'pressure'
       'spraysystem'
       'livecam'
       'spindletime'
-      'status'
-      'sessions'
       'activetool';
     grid-template-rows: auto;
     grid-template-columns: 1fr;
     gap: 5vh;
   }
 
-  /* Additional styling for individual items (adjust as needed) */
-
+.item9{
+  margin-bottom: 20vh;
+}
   .item1,
   .item2,
   .item3,
@@ -237,20 +229,18 @@ th{
     margin-top: 5vh;
   }
   .item9 {
-    height: auto; /* Adjust height as needed for responsiveness */
+    height: 50vh;
   }
 
 
 }
 
 .table-container {
-  /* Add this style to make the table scrollable */
   max-height: 100%;
   overflow-y: auto;
 }
 
 td {
-  /* Add this style to ensure the content inside td is scrollable */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -258,20 +248,19 @@ td {
 tr{
   line-height: 150%;
 }
-/* Existing styles ... */
 
 .item2 > .imgContainer {
-  width: 100%; /* Set a fixed width for the image container */
+  width: 100%;
   height: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Hide any overflowing image */
+  overflow: hidden;
 }
 
 .item2 > .imgContainer > .image_Preview {
-  height: 100%; /* Maintain aspect ratio */
-  object-fit: cover; /* Scale the image to cover the container while preserving its aspect ratio */
+  height: 100%;
+  object-fit: cover;
 }
 
 .item2 > .image_warning {
@@ -279,33 +268,30 @@ tr{
   color: #707070;
   text-align: center;
 }
-/* Existing styles ... */
 
-/* Existing styles ... */
 
 .item1,
 .item2 {
   width: 25vw;
-  overflow: hidden; /* Hide any overflowing content */
+  overflow: hidden;
 }
 .item1 > table {
-  width: 100%; /* Set the width of the table to 100% to fill the container */
+  width: 100%;
 }
 .scrollableTableContainer {
   width: 100%;
-  overflow-x: auto; /* Enable horizontal scrolling when table content overflows */
+  overflow-x: auto;
 }
 
 .scrollableTableContainer table {
-  width: auto; /* Set the width of the table to auto to expand as needed */
-  table-layout: auto; /* Use auto layout to adjust column widths based on content */
+  width: auto;
+  table-layout: auto;
 }
 
 .scrollableTableContainer td {
-  white-space: nowrap; /* Prevent line breaks within table cells */
+  white-space: nowrap;
 }
 
-/* Rest of the existing styles ... */
 .item1 > table{
   width: 100%;
 }

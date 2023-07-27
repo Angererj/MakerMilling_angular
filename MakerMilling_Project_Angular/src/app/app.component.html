@@ -1,4 +1,4 @@
-<body>
-  <app-header class="nav_header"></app-header>
+<app-header class="nav_header" *ngIf="shouldShowHeader"></app-header>
+<div class="content">
   <router-outlet></router-outlet>
-</body>
+</div>

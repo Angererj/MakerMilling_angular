@@ -16,7 +16,6 @@ import {CommonModule} from "@angular/common";
 import { HeaderComponent } from './header/header.component';
 
 
-
 const routes: Routes = [
   {path:'sessions',component:SessionsComponent, canActivate: [AuthGuard] },
   {path:'dashboard',component:DashboardComponent, canActivate: [AuthGuard] },
