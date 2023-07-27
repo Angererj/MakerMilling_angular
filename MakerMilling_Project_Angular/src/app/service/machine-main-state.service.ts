@@ -56,10 +56,11 @@ export class MachineMainStateService {
     this.machineCurrentToolService.getToolImageUrl();
     this.machineImageService.getToolInSpindleImage();
     this.machineImageService.getProgramPreviewImage();
-    this.machineImageService.getLiveCameraFeed();
   }
 
-
+  public executeImageOneSecond(){
+    this.machineImageService.getLiveCameraFeed();
+  }
 
   constructor(private http: HttpClient,
               private machineInformationService: MachineInformationService,

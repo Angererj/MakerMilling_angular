@@ -61,6 +61,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.machineMainStateService.getGlobalMachineIsActive();
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
+    setInterval(() => this.machineMainStateService.executeImageOneSecond(), 1000);
 
     this.machineStateService.tankPressureInput.subscribe(value => {
       this.tankPressureInput = value;
