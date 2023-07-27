@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {environment, setUserAuthenticated} from "../../environments/enviroments";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MachineStateService} from "../service/machine-state.service";
 
 @Component({
@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit{
   }
 
   ngOnInit() {
+
     this.machineStateService.machineStatusLight.subscribe(value => {
       this.machineRGBState = value;
     })

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {environment} from "../environments/enviroments";
+import {Component, HostListener} from '@angular/core';
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,15 @@ import {environment} from "../environments/enviroments";
 })
 export class AppComponent {
   title = 'Maker Milling';
+  shouldShowHeader: boolean = false;
+  allowedPages: string[] = ['/sessions', '/dashboard']; // Add the routes of the pages where you want to show the header
+
+  constructor(private router: Router) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.shouldShowHeader = this.allowedPages.includes(event.url); // Check if the current route is in the list of allowed pages
+      }
+    });
+  }
 
 }

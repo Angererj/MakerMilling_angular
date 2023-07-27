@@ -1,7 +1,11 @@
-.nav_header{
+.nav_header {
   top: 0;
   position: sticky;
 }
-body{
+
+body {
   overflow-x: hidden;
+  overscroll-behavior: contain;
+
+  scroll-behavior: smooth;
 }
