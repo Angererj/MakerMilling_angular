@@ -6,6 +6,7 @@ import {DatePipe} from "@angular/common";
 import {setUserAuthenticated} from "../../environments/enviroments";
 import {Router} from "@angular/router";
 import {isEmpty} from "rxjs";
+import {MachineMainStateService} from "../service/machine-main-state.service";
 
 @Component({
   selector: 'app-sessions',
@@ -16,7 +17,7 @@ export class SessionsComponent implements OnInit{
   isEmpty:any;
    dataEntry:any;
   fullname:string="";
-  constructor(private datatableService: DatatableService, private userService: UserService,private router: Router) {
+  constructor(private datatableService: DatatableService, private userService: UserService,private router: Router,private MainStateService: MachineMainStateService) {
 }
 logOut(){
 setUserAuthenticated(false)
@@ -25,6 +26,7 @@ setUserAuthenticated(false)
 }
 
 ngOnInit() {
+    this.MainStateService.executeAllServices();
      this.fullname = this.userService.getFullname();
   setInterval(() => this.datatableService.getDatatable(), 30000);
   this.datatableService.getDatatable();

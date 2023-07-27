@@ -1,6 +1,4 @@
-.innerContent{
-  padding-top: 2vh;
-}
+
 .item1 { grid-area: info; }
 .item2 { grid-area: activeprogram; }
 .item3 { grid-area: logMessage; }
@@ -62,12 +60,11 @@ th{
   width: 100%;
 }
 .content{
+  padding-top: 10vh;
   background: #d7d7d7;
-  height: auto;
+  overflow-y: hidden;
 }
-.innerContent{
-  height: 90vh;
-}
+
 .item2 > .imgContainer{
   width: 100%;
   height:40%;
@@ -178,7 +175,9 @@ th{
     align-items: center;
     overflow: hidden;
   }
-
+  .content{
+    padding-top: 20vh;
+  }
   .grid-container > div {
     width: auto;
   }

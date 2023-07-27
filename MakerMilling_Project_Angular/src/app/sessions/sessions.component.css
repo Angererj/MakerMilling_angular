@@ -36,6 +36,7 @@ button:focus {
 /* Styles for the session-collection */
 .session-collection {
   background: #f8f8f8;
+  border-radius: 5px;
   padding:2vw 10vw;
   display: flex;
   flex-direction: column; /* One entry per row */
@@ -53,10 +54,12 @@ button:focus {
   padding: 1rem;
   transition: .5s ease;
 }
+.session-item:first-child {
+  margin-top: 20vh;
+}
+.session-item:hover{
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 
-.session-item :hover{
-  box-shadow: 0 0 0 10px #000000;
-  transition: .5s ease;
 }
 
 /* Styles for the session-item-row */

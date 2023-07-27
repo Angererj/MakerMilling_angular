@@ -1,6 +1,5 @@
 .topStateDisplay {
-  overflow:hidden;
-  background: white;
+ background: white;
   width: 100vw;
   display: flex;
   justify-content: center;
