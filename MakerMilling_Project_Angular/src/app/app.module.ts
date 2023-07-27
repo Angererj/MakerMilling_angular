@@ -34,7 +34,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-      MatGridListModule,
+    MatGridListModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     ReactiveFormsModule,
