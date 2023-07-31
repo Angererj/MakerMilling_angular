@@ -10,10 +10,8 @@ export const environment = {
   machineIpAdress: "http://10.3.0.128",
   machineVideoStream: 'http://10.3.0.128:44347/mjpg/video.mjpg',
   userIsAuthenticated: false
-
 };
 
 export function setUserAuthenticated(isAuthenticated: boolean): void {
-  //console.log(environment.userIsAuthenticated)
   environment.userIsAuthenticated = isAuthenticated;
 }

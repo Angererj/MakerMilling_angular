@@ -49,4 +49,15 @@ export class MachineImagesService {
       this.programPreviewImage.next('data:image/png;base64,' + result.content);
     });
   }
+
+  public getLiveCameraFeed(){
+    const url = this.imageUrl + this.liveCameraImageEntity;
+    const headers= new HttpHeaders({
+      'content-type': 'application/json',
+      'appKey': this.appKey,
+      'accept': 'application/json'});
+    this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
+      this.liveCameraImage.next('data:image/png;base64,' + result.content);
+    });
+  }
 }

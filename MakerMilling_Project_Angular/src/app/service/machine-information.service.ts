@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {MachineMainStateService} from "./machine-main-state.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {debounceTime, Subject} from "rxjs";
 import {environment} from "../../environments/environments";
@@ -31,7 +30,6 @@ constructor(private http: HttpClient) {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineType.next(  result.rows[0].machineType);
       });
-
   }
 
   public getMachineNumber(){
@@ -43,7 +41,6 @@ constructor(private http: HttpClient) {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineNumber.next(result.rows[0].machineNumber);
       });
-
   }
 
   public getMachineLocation() {
@@ -67,7 +64,6 @@ constructor(private http: HttpClient) {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineFloor.next(result.rows[0].machineOnFloor);
       });
-
   }
 
   public getMachineSoftwareVersion(){
@@ -91,5 +87,4 @@ constructor(private http: HttpClient) {
         this.machineRequiresTraining.next(result.rows[0].requiresTraining);
       });
   }
-
 }

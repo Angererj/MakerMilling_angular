@@ -10,7 +10,7 @@
   min-height: 100vh;
   background: linear-gradient(to top, #366694, #87cefa);
 }
-.error-msg{
+.error-msg, span{
   color: red;
   width: 100%;
   padding-top: 2vh;

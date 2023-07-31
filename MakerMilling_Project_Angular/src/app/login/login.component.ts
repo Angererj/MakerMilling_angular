@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
@@ -17,8 +17,8 @@ import {setUserAuthenticated} from "../../environments/environments";
 
 export class LoginComponent implements OnInit{
   regForm: FormGroup  = new FormGroup({
-    'username': new FormControl(null),
-    'password': new FormControl(null)
+    'username': new FormControl(null, Validators.required),
+    'password': new FormControl(null, Validators.required)
   },);
    errormsg = "";
   constructor(private userService: UserService) {

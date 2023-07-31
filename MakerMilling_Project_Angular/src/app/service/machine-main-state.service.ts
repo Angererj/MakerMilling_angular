@@ -62,6 +62,10 @@ export class MachineMainStateService {
     this.machineImageService.getProgramPreviewImage();
   }
 
+  public executeImageOneSecond(){
+    this.machineImageService.getLiveCameraFeed();
+  }
+
   constructor(private http: HttpClient,
               private machineInformationService: MachineInformationService,
               private machineStateService: MachineStateService,

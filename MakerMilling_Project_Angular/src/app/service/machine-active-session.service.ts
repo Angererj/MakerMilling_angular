@@ -22,7 +22,6 @@ export class MachineActiveSessionService {
   activeProgramPreviewImage = new Subject<string>();
   activeProgramProgess = new Subject<string>();
 
-
   constructor(private http: HttpClient) {}
 
   public getLoggedInSince(){

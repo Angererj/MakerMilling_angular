@@ -27,7 +27,6 @@ export class MachineStateService {
   machineVacuumPressure = new Subject<string>();
 
   constructor(private http: HttpClient) {
-
   }
 
   public getFabmanIsActive(){
@@ -39,7 +38,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.fabmanIsActive.next(result.rows[0].fabmanIsActive);
       });
-
   }
 
   public getRuntimeCombined(){
@@ -51,7 +49,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineRuntimeCombined.next(result.rows[0].formattedRuntimeCombined);
       });
-
   }
 
   public getLastNotificationMessage(){
@@ -74,7 +71,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.lastNotificationType.next(result.rows[0].latestNotificationType);
       });
-
   }
 
   public getLiveFeedImageUrl(){
@@ -86,7 +82,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.liveCameraFeedUrl.next(result.rows[0].liveFeedImageUrl);
       });
-
   }
 
   public getMachineIsActive(){
@@ -98,7 +93,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineIsActive.next(result.rows[0].machineIsActive);
       });
-
   }
 
   public getSpraySystemTank1Empty(){
@@ -110,7 +104,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineTank1Empty.next(result.rows[0].machineSpraysystemTank1Empty);
       });
-
   }
 
   public getSpraySystemTank2(){
@@ -122,7 +115,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineTank2.next(result.rows[0].machineSpraySystemTank2);
       });
-
   }
 
   public getMachineExecutionState(){
@@ -134,7 +126,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineExecutionState.next(result.rows[0].machineState);
       });
-
   }
 
   public getMachineStatusLight(){
@@ -146,7 +137,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineStatusLight.next(result.rows[0].rgbStringVuforia);
       });
-
   }
 
   public getMachineTankPressureInput(){
@@ -158,7 +148,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.tankPressureInput.next(result.rows[0].machineTankPressureInput);
       });
-
   }
 
   public getMachineTankPressureOutput(){
@@ -170,7 +159,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.tankPressureOutput.next(result.rows[0].machineTankPressureOutput);
       });
-
   }
 
   public getMachineVacuumIsActivated(){
@@ -182,7 +170,6 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineVacuumIsActived.next(result.rows[0].machineVacuumIsActivated);
       });
-
   }
 
   public getMachineVacuumPressure(){
@@ -194,7 +181,5 @@ export class MachineStateService {
       this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
         this.machineVacuumPressure.next(result.rows[0].machineVacuumPressure);
       });
-    }
-
+  }
 }
-

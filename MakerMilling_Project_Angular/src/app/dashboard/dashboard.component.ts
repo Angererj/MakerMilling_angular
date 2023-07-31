@@ -69,8 +69,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.machineMainStateService.getGlobalMachineIsActive();
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
+    setInterval(() => this.machineMainStateService.executeImageOneSecond(), 1000);
 
-    this.startStreaming();
+
+    //this.startStreaming();
 
     this.machineStateService.tankPressureInput.subscribe(value => {
       this.tankPressureInput = value;
@@ -88,6 +90,32 @@ export class DashboardComponent implements OnInit {
       this.machineVacuum = value;
     })
     this.machineStateService.machineExecutionState.subscribe(value => {
+      switch (value) {
+        case "Init":
+          value = 'Initialisieren';
+          break;
+        case "Preparing":
+          value = 'Vorbereiten';
+          break;
+        case "Idle":
+           value = 'Leerlauf'
+          break;
+        case "Running":
+          value = 'Aktiv';
+          break;
+        case  "Manual":
+          value = 'Handbetrieb';
+          break;
+        case "Aborted":
+          value = 'Abgebrochen';
+          break;
+        case "Transient":
+          value = 'Undefiniert';
+          break;
+        case "WaitingForUserInput":
+          value = 'Warten auf Benutzereingabe';
+          break;
+      }
       this.machineState = value;
     })
     this.machineStateService.machineStatusLight.subscribe(value => {
@@ -170,6 +198,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  /**
   startStreaming() {
     const img = this.streamRef.nativeElement;
     img.src = environment.machineVideoStream;
@@ -201,4 +230,6 @@ export class DashboardComponent implements OnInit {
       this.animateStreaming();
     });
   }
+
+    **/
 }
