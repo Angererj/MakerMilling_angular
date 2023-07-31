@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {environment, setUserAuthenticated} from "../../environments/environments";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {MachineStateService} from "../service/machine-state.service";
 
 @Component({
@@ -8,14 +8,14 @@ import {MachineStateService} from "../service/machine-state.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
-  machineRGBState= "";
+  machineRGBState = "";
 
   constructor(private machineStateService: MachineStateService, private router: Router) {
   }
 
-  logOut(){
+  logOut() {
     setUserAuthenticated(false);
     this.router.navigate(['/login']);
   }

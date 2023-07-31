@@ -14,7 +14,7 @@ export class MachineMainStateService {
 
   private baseUrl: string = environment.baseUrl;
 
-  private appKey:string = environment.appKey;
+  private appKey: string = environment.appKey;
 
   private _globalMachineState: boolean = false;
 
@@ -23,7 +23,7 @@ export class MachineMainStateService {
     return this._globalMachineState;
   }
 
-  public  executeAllServices(){
+  public executeAllServices() {
     this.machineInformationService.getMachineType();
     this.machineInformationService.getMachineNumber();
     this.machineInformationService.getMachineSoftwareVersion();
@@ -62,7 +62,7 @@ export class MachineMainStateService {
     this.machineImageService.getProgramPreviewImage();
   }
 
-  public executeImageOneSecond(){
+  public executeImageOneSecond() {
     this.machineImageService.getLiveCameraFeed();
   }
 
@@ -71,23 +71,24 @@ export class MachineMainStateService {
               private machineStateService: MachineStateService,
               private machineActiveSessionService: MachineActiveSessionService,
               private machineCurrentToolService: MachineCurrentToolService,
-              private machineImageService: MachineImagesService){ }
+              private machineImageService: MachineImagesService) {
+  }
 
 
   public getGlobalMachineIsActive() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMainStateMachine.Thing/Properties/globalMachineIsActive';
-    const headers= new HttpHeaders({
+    const headers = new HttpHeaders({
       'content-type': 'application/json',
       'appKey': this.appKey,
-      'accept': 'application/json'});
+      'accept': 'application/json'
+    });
 
-    this.http.get<any>(url, { 'headers': headers }).subscribe(
+    this.http.get<any>(url, {'headers': headers}).subscribe(
       (result) => {
         this._globalMachineState = result.rows[0].globalMachineIsActive;
-        if( this._globalMachineState == true){
+        if (this._globalMachineState == true) {
           this.executeAllServices();
-        }
-        else{
+        } else {
           //console.log("Maschine ist nicht erreichbar.");
         }
       },

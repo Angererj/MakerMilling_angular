@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .form-container {
   display: flex;
   justify-content: center;
@@ -10,12 +11,14 @@
   min-height: 100vh;
   background: linear-gradient(to top, #366694, #87cefa);
 }
-.error-msg, span{
+
+.error-msg, span {
   color: red;
   width: 100%;
   padding-top: 2vh;
   text-align: center;
 }
+
 .my-form {
   width: 100%;
   max-width: 400px;
@@ -58,7 +61,8 @@
 
 /* Style for the submit button on hover */
 .form-group button:hover {
-opacity: 0.75}
+  opacity: 0.75
+}
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {

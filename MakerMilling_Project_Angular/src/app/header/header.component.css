@@ -1,19 +1,21 @@
 .topStateDisplay {
- background: white;
+  background: white;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.topStateDisplay > h1{
+
+.topStateDisplay > h1 {
   width: 100%;
   text-align: left;
   padding: 1vh;
   font-weight: 100;
   color: #1e1e1e;
 }
+
 .topStateDisplay img {
-  margin-left:3vw;
+  margin-left: 3vw;
   height: 2vw;
   margin-right: 10px;
 }
@@ -27,25 +29,31 @@
   opacity: 0.8;
   cursor: pointer;
 }
+
 .topStateDisplay a {
-  transition: 0.3s ;
+  transition: 0.3s;
   margin: 0 10px;
   text-decoration: none;
   color: #1e1e1e;
 }
+
 .topStateDisplay a:last-child {
   margin-right: 5vw;
 }
+
 @media screen and (max-width: 768px) {
-  .topStateDisplay{
+  .topStateDisplay {
     flex-direction: column;
   }
-  .topStateDisplay > img{
+
+  .topStateDisplay > img {
     display: none;
   }
-  .topStateDisplay > a{
-      margin: 1vh 0;
+
+  .topStateDisplay > a {
+    margin: 1vh 0;
   }
+
   .topStateDisplay a:last-child {
     margin-right: 0;
   }

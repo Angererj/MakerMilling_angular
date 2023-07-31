@@ -1,11 +1,9 @@
-
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { OnInit } from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {OnInit} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {UserObject} from "../model/user";
-import {DatatableService} from "../service/datatable.service";
 import {setUserAuthenticated} from "../../environments/environments";
 
 @Component({
@@ -15,23 +13,25 @@ import {setUserAuthenticated} from "../../environments/environments";
 })
 
 
-export class LoginComponent implements OnInit{
-  regForm: FormGroup  = new FormGroup({
+export class LoginComponent implements OnInit {
+  regForm: FormGroup = new FormGroup({
     'username': new FormControl(null, Validators.required),
     'password': new FormControl(null, Validators.required)
-  },);
-   errormsg = "";
+  });
+  errormsg = "";
+
   constructor(private userService: UserService) {
-}
-  ngOnInit(){
+  }
+
+  ngOnInit() {
     setUserAuthenticated(false)
   }
 
-  onSubmit(){
-    let user: UserObject = Object.assign({},this.regForm?.value)
+  onSubmit() {
+    let user: UserObject = Object.assign({}, this.regForm?.value)
     this.userService.checkUser(user)
-    this.userService.errorMsgSubject.subscribe(data=>{
-        this.errormsg = data
+    this.userService.errorMsgSubject.subscribe(data => {
+      this.errormsg = data
     })
   }
 }
