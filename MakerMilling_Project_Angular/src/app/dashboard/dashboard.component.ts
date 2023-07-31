@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MachineMainStateService} from "../service/machine-main-state.service";
 import {MachineInformationService} from "../service/machine-information.service";
 import {MachineStateService} from "../service/machine-state.service";
@@ -6,6 +6,7 @@ import {MachineActiveSessionService} from "../service/machine-active-session.ser
 import {MachineCurrentToolService} from "../service/machine-current-tool.service";
 import {UserService} from "../service/user.service";
 import {MachineImagesService} from "../service/machine-images.service";
+import {environment} from "../../environments/environments";
 
 
 @Component({
@@ -14,6 +15,12 @@ import {MachineImagesService} from "../service/machine-images.service";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('canvas_Livecam', { static: true }) canvasRef!: ElementRef<HTMLCanvasElement>;
+
+  @ViewChild('stream', { static: true }) streamRef!: ElementRef<HTMLImageElement>;
+
+  private animationFrameId: number | undefined;
+
   tankPressureInput= "";
   tankPressureOutput= "";
   machineTank1Empty= "";
@@ -62,7 +69,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.machineMainStateService.getGlobalMachineIsActive();
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
-    setInterval(() => this.machineMainStateService.executeImageOneSecond(), 1000);
+
+    this.startStreaming();
 
     this.machineStateService.tankPressureInput.subscribe(value => {
       this.tankPressureInput = value;
@@ -156,10 +164,41 @@ export class DashboardComponent implements OnInit {
     })
     this.imageService.programPreviewImage.subscribe(value => {
       this.programPreviewImage = value;
-      console.log(value)
     })
     this.imageService.liveCameraImage.subscribe(value => {
       this.liveCameraImage = value;
     })
+  }
+
+  startStreaming() {
+    const img = this.streamRef.nativeElement;
+    img.src = environment.machineVideoStream;
+    img.onload = () => {
+      this.drawImageOnCanvas();
+      this.animateStreaming();
+    };
+  }
+
+
+
+  stopStreaming() {
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
+  }
+
+  drawImageOnCanvas() {
+    const canvas = this.canvasRef.nativeElement;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.drawImage(this.streamRef.nativeElement, 10,10,400,277);
+    }
+  }
+
+  animateStreaming() {
+    this.animationFrameId = requestAnimationFrame(() => {
+      this.drawImageOnCanvas();
+      this.animateStreaming();
+    });
   }
 }

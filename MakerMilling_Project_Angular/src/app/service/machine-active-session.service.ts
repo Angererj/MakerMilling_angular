@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MachineMainStateService} from "./machine-main-state.service";
 import {debounceTime, Subject} from "rxjs";
-import {environment} from "../../environments/enviroments";
+import {environment} from "../../environments/environments";
 
 @Injectable({
   providedIn: 'root'

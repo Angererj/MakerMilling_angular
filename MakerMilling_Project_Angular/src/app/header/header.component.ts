@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {environment, setUserAuthenticated} from "../../environments/enviroments";
+import {environment, setUserAuthenticated} from "../../environments/environments";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MachineStateService} from "../service/machine-state.service";
 

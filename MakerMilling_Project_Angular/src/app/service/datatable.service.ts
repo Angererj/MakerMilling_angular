@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {debounceTime, Subject} from "rxjs";
-import {environment} from "../../environments/enviroments";
+import {environment} from "../../environments/environments";
 import {SessionObject} from "../model/session";
 
 @Injectable({

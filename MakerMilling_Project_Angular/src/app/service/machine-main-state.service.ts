@@ -4,7 +4,7 @@ import {MachineInformationService} from "./machine-information.service";
 import {MachineStateService} from "./machine-state.service";
 import {MachineActiveSessionService} from "./machine-active-session.service";
 import {MachineCurrentToolService} from "./machine-current-tool.service";
-import {environment} from "../../environments/enviroments";
+import {environment} from "../../environments/environments";
 import {MachineImagesService} from "./machine-images.service";
 
 @Injectable({
@@ -60,10 +60,6 @@ export class MachineMainStateService {
     this.machineCurrentToolService.getToolImageUrl();
     this.machineImageService.getToolInSpindleImage();
     this.machineImageService.getProgramPreviewImage();
-  }
-
-  public executeImageOneSecond(){
-    this.machineImageService.getLiveCameraFeed();
   }
 
   constructor(private http: HttpClient,

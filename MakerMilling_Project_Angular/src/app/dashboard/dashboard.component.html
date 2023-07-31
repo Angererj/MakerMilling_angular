@@ -32,8 +32,8 @@
       <div class="item2">
         <h3>Aktives Programm</h3>
         <div class="imgContainer">
-          <img *ngIf="programPreviewImage != 'data:image/png;base64,' && programPreviewImage != 'data:image/png;base64,,eyJ0eXBlIjoiaHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzcyMzEjc2VjdGlvbi02LjUuMSIsInRpdGxlIjoiQmFkIFJlcXVlc3QiLCJzdGF0dXMiOjQwMCwidHJhY2VJZCI6IjBITVNISU0zSDRSQjQ6MDAwMDAwMDEifQ=='" [src]="programPreviewImage" class="image_Preview">
-          <p *ngIf="programPreviewImage == 'data:image/png;base64,'" class="image_warning">Kein Bild verfügbar</p>
+          <img *ngIf="programPreviewImage != 'data:image/png;base64,' && programPreviewImage != 'data:image/png;base64,eyJ0eXBlIjoiaHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzcyMzEjc2VjdGlvbi02LjUu'" [src]="programPreviewImage" class="image_Preview">
+          <p *ngIf="programPreviewImage == 'data:image/png;base64,' || programPreviewImage == 'data:image/png;base64,eyJ0eXBlIjoiaHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzcyMzEjc2VjdGlvbi02LjUu'" class="image_warning">Kein Bild verfügbar</p>
         </div>
         <div class="scrollableTableContainer">
           <table>
@@ -109,7 +109,8 @@
       <div class="item6">
         <h3>Kamera</h3>
         <div class="imageContainer">
-          <img [src]="liveCameraImage" class="image_liveCam">
+          <img #stream style="display: none">
+          <canvas #canvas_Livecam height="300"  width="500"></canvas>
         </div>
       </div>
       <div class="item7">

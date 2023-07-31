@@ -6,7 +6,7 @@ import { OnInit } from '@angular/core';
 import {UserService} from "../service/user.service";
 import {UserObject} from "../model/user";
 import {DatatableService} from "../service/datatable.service";
-import {setUserAuthenticated} from "../../environments/enviroments";
+import {setUserAuthenticated} from "../../environments/environments";
 
 @Component({
   selector: 'app-login',

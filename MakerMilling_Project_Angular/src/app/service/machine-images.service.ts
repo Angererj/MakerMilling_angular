@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../environments/enviroments";
+import {environment} from "../../environments/environments";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {debounceTime, Subject} from "rxjs";
 import {MachineStateService} from "./machine-state.service";
@@ -47,17 +47,6 @@ export class MachineImagesService {
       'accept': 'application/json'});
     this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
       this.programPreviewImage.next('data:image/png;base64,' + result.content);
-    });
-  }
-
-  public getLiveCameraFeed(){
-    const url = this.imageUrl + this.liveCameraImageEntity;
-    const headers= new HttpHeaders({
-      'content-type': 'application/json',
-      'appKey': this.appKey,
-      'accept': 'application/json'});
-    this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-      this.liveCameraImage.next('data:image/png;base64,' + result.content);
     });
   }
 }

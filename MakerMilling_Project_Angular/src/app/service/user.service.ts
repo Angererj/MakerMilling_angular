@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {debounceTime, Subject} from "rxjs";
-import {environment, setUserAuthenticated} from "../../environments/enviroments";
+import {environment, setUserAuthenticated} from "../../environments/environments";
 import {UserObject} from "../model/user";
 import {Router, RouterModule} from "@angular/router";
 

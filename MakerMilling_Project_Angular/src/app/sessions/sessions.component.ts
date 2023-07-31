@@ -3,7 +3,7 @@ import {DatatableService} from "../service/datatable.service";
 import {UserService} from "../service/user.service";
 import {SessionObject} from "../model/session";
 import {DatePipe} from "@angular/common";
-import {setUserAuthenticated} from "../../environments/enviroments";
+import {setUserAuthenticated} from "../../environments/environments";
 import {Router} from "@angular/router";
 import {isEmpty} from "rxjs";
 import {MachineMainStateService} from "../service/machine-main-state.service";

@@ -8,6 +8,7 @@ export const environment = {
   programPreviewImageEntity: "JA_SE.MakerMillingActiveProgramImage.Media",
   liveCameraImageEntity: "JA_SE.MakerMillingLiveCameraFeedImage.Media",
   machineIpAdress: "http://10.3.0.128",
+  machineVideoStream: 'http://10.3.0.128:44347/mjpg/video.mjpg',
   userIsAuthenticated: false
 
 };

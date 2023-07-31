@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import {environment} from "../environments/enviroments";
+import {environment} from "../environments/environments";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
