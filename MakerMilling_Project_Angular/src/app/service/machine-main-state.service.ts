@@ -1,11 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {debounceTime} from "rxjs";
 import {MachineInformationService} from "./machine-information.service";
 import {MachineStateService} from "./machine-state.service";
 import {MachineActiveSessionService} from "./machine-active-session.service";
 import {MachineCurrentToolService} from "./machine-current-tool.service";
-import {AppComponent} from "../app.component";
 import {environment} from "../../environments/enviroments";
 import {MachineImagesService} from "./machine-images.service";
 
@@ -18,7 +16,13 @@ export class MachineMainStateService {
 
   private appKey:string = environment.appKey;
 
-  private globalMachineState: boolean = false;
+  private _globalMachineState: boolean = false;
+
+
+  get globalMachineState(): boolean {
+    return this._globalMachineState;
+  }
+
   public  executeAllServices(){
     this.machineInformationService.getMachineType();
     this.machineInformationService.getMachineNumber();
@@ -79,21 +83,17 @@ export class MachineMainStateService {
 
     this.http.get<any>(url, { 'headers': headers }).subscribe(
       (result) => {
-        this.globalMachineState = result.rows[0].globalMachineIsActive;
-        if( this.globalMachineState == true){
+        this._globalMachineState = result.rows[0].globalMachineIsActive;
+        if( this._globalMachineState == true){
           this.executeAllServices();
         }
         else{
-          console.log("Maschine ist nicht erreichbar.");
+          //console.log("Maschine ist nicht erreichbar.");
         }
       },
       (error) => {
-        console.error('Error occurred:', error);
+        //console.error('Error occurred:', error);
       }
     );
   }
-
-
-
-
 }

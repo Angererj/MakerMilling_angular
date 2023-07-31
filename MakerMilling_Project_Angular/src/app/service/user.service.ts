@@ -35,18 +35,21 @@ export class UserService {
 
     // You don't need to pass the headers as a separate object in the post method
     // The headers should be directly passed as the third parameter
-    this.http.get(url,  httpOptions).subscribe(
-      (result) => {
-        setUserAuthenticated(true);
-        this.getUserData(user);
-        this.errorMsgSubject.next("");
-
-      },
-      (error) => {
-        setUserAuthenticated(false);
-        this.errorMsgSubject.next("Fehler: Überprüfe deine Anmeldedaten.");
-      }
-    );
+    try{
+      this.http.get(url,  httpOptions).subscribe(
+        (result) => {
+          setUserAuthenticated(true);
+          this.getUserData(user);
+          this.errorMsgSubject.next("");
+        },
+        (error) => {
+          setUserAuthenticated(false);
+          this.errorMsgSubject.next("Fehler: Überprüfe deine Anmeldedaten.");
+        }
+      );
+    }catch (err){
+      console.log("Login fehlgeschlagen");
+    }
   }
   getUserData(user:UserObject){
     const url = this.userUrl+user.username+"/Properties/";
@@ -56,7 +59,6 @@ export class UserService {
       'Authorization': 'Basic '+test,
       'accept': 'application/json'});
     this.http.get<any>(url,{'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-
       this.setFullname(result.rows[0].firstName + " "+ result.rows[0].lastName)
         this.router.navigate(['/dashboard']);
     });

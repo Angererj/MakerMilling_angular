@@ -14,6 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "./auth.guard";
 import {CommonModule} from "@angular/common";
 import { HeaderComponent } from './header/header.component';
+import { PopupComponent } from './popup/popup.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
     DashboardComponent,
     LoginComponent,
     HeaderComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

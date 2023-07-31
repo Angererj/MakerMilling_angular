@@ -13,6 +13,6 @@ export const environment = {
 };
 
 export function setUserAuthenticated(isAuthenticated: boolean): void {
-  console.log(environment.userIsAuthenticated)
+  //console.log(environment.userIsAuthenticated)
   environment.userIsAuthenticated = isAuthenticated;
 }

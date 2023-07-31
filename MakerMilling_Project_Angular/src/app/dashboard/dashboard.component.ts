@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MachineMainStateService} from "../service/machine-main-state.service";
 import {MachineInformationService} from "../service/machine-information.service";
 import {MachineStateService} from "../service/machine-state.service";
@@ -6,8 +6,7 @@ import {MachineActiveSessionService} from "../service/machine-active-session.ser
 import {MachineCurrentToolService} from "../service/machine-current-tool.service";
 import {UserService} from "../service/user.service";
 import {MachineImagesService} from "../service/machine-images.service";
-import {environment, setUserAuthenticated} from "../../environments/enviroments";
-import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -49,7 +48,9 @@ export class DashboardComponent implements OnInit {
   programPreviewImage = "";
   liveCameraImage = "";
 
-  constructor(private machineMainStateService: MachineMainStateService,
+  popupErrorMessage = "Maschine ist nicht erreichbar, stellen Sie sicher, dass diese eingeschaltet und mit dem Netzwerk verbunden ist.";
+
+  constructor(public machineMainStateService: MachineMainStateService,
               private machineInformationService: MachineInformationService,
               private machineActiveSession: MachineActiveSessionService,
               private machineStateService: MachineStateService,
@@ -155,6 +156,7 @@ export class DashboardComponent implements OnInit {
     })
     this.imageService.programPreviewImage.subscribe(value => {
       this.programPreviewImage = value;
+      console.log(value)
     })
     this.imageService.liveCameraImage.subscribe(value => {
       this.liveCameraImage = value;
