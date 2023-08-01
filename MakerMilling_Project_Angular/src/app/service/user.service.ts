@@ -45,21 +45,21 @@ export class UserService {
     });
     let httpOptions = {headers: headers /*, withCredentials: true */};
 
-    this.http.get(url, httpOptions).subscribe(
-      (result) => {
+    this.http.get(url, httpOptions).subscribe({
+      next: (result) => {
         //if returned user is valid, then set user authenticated in environment true, set userdata to user
         //return empty errormessage
         setUserAuthenticated(true);
         this.getUserData(user);
         this.errorMsgSubject.next("");
       },
-      (error) => {
+      error: (error) => {
         //if user is invalid, then set user authenticated in environment false
         //return errormessage
         setUserAuthenticated(false);
         this.errorMsgSubject.next("Fehler: Überprüfe deine Anmeldedaten.");
       }
-    );
+    });
   }
 
   //get userdata, pass result to subject
@@ -71,10 +71,15 @@ export class UserService {
       'Authorization': 'Basic ' + user_data_combined,
       'accept': 'application/json'
     });
-    this.http.get<any>(url, {'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-      this.setFullname(result.rows[0].firstName + " " + result.rows[0].lastName);
-      //navigate to dashboard
-      this.router.navigate(['/dashboard']);
+    this.http.get<any>(url, {'headers': headers}).pipe(debounceTime(10)).subscribe({
+      next: (result) => {
+        this.setFullname(result.rows[0].firstName + " " + result.rows[0].lastName);
+        //navigate to dashboard
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.log(err)
+      }
     });
   }
 }

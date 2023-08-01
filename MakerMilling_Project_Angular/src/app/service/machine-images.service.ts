@@ -39,7 +39,6 @@ export class MachineImagesService {
       const imageDecodedPropertyUrl = this.baseUrl + 'JA_SE.MakerMillingImages.Thing/Properties/toolInSpindleDecoded';
       const body = {"toolInSpindleDecoded": 'data:image/png;base64,' + result.content};
       this.http.put<any>(imageDecodedPropertyUrl, body, {'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-        //console.log("uploaded");
       });
     });
   }

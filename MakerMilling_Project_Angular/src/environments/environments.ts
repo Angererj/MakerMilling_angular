@@ -7,7 +7,6 @@ export const environment = {
   toolInSpindleImageEntity: "JA_SE.MakerMillingToolInSpindleImage.Media",
   programPreviewImageEntity: "JA_SE.MakerMillingActiveProgramImage.Media",
   liveCameraImageEntity: "JA_SE.MakerMillingLiveCameraFeedImage.Media",
-  machineIpAddress: "http://10.3.0.128",
   userIsAuthenticated: false
 };
 

@@ -96,18 +96,17 @@ export class MachineMainStateService {
       'accept': 'application/json'
     });
 
-    this.http.get<any>(url, {'headers': headers}).subscribe(
-      (result) => {
-        this._globalMachineState = result.rows[0].globalMachineIsActive;
-        //if machine is active execute all services
-        if (this._globalMachineState && environment.userIsAuthenticated) {
-          this.executeAllServices();
-        } else {
-          //console.log("Maschine ist nicht erreichbar.");
+    this.http.get<any>(url, {'headers': headers}).subscribe({
+        next: (result) => {
+          this._globalMachineState = result.rows[0].globalMachineIsActive;
+          //if machine is active execute all services
+          if (this._globalMachineState && environment.userIsAuthenticated) {
+            this.executeAllServices();
+          }
+        },
+        error: (err) => {
+          console.log(err)
         }
-      },
-      (error) => {
-        //console.error('Error occurred:', error);
       }
     );
   }

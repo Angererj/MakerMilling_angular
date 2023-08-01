@@ -28,16 +28,16 @@ export class DatatableService {
       let httpOptions = {headers: headers /*, withCredentials: true */};
 
       //headers passed directly as third parameter in post, body empty
-      this.http.post(url, null, httpOptions).subscribe(
-        (result) => {
+      this.http.post(url, null, httpOptions).subscribe({
+        next: (result) => {
           //if datatable returned then write it to datasubject
           this.dataSubject.next(result)
         },
-        (error) => {
+        error: (error) => {
           //errormessage
           console.error(error);
         }
-      );
+      });
     }
   }
 }

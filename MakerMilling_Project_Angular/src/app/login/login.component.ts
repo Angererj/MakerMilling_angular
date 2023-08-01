@@ -1,7 +1,5 @@
-import {Component} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import {FormGroup} from '@angular/forms';
-import {OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from "../service/user.service";
 import {UserObject} from "../model/user";
 import {setUserAuthenticated} from "../../environments/environments";

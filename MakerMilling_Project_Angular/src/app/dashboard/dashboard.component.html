@@ -34,7 +34,7 @@
         <div class="imgContainer">
           <img
             *ngIf="programPreviewImage != 'data:image/png;base64,' && programPreviewImage != 'data:image/png;base64,eyJ0eXBlIjoiaHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzcyMzEjc2VjdGlvbi02LjUu'"
-            [src]="programPreviewImage" class="image_Preview">
+            [src]="programPreviewImage" class="image_Preview" alt="Programvorschau"/>
           <p
             *ngIf="programPreviewImage == 'data:image/png;base64,' || programPreviewImage == 'data:image/png;base64,eyJ0eXBlIjoiaHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzcyMzEjc2VjdGlvbi02LjUu'"
             class="image_warning">Kein Bild verfügbar</p>
@@ -113,9 +113,7 @@
       <div class="item6">
         <h3>Kamera</h3>
         <div class="imageContainer">
-          <img [src]="liveCameraImage" class="image_liveCam">
-          <!--<img #stream style="display: none">
-          <canvas #canvas_Livecam height="600"  width="800"></canvas>-->
+          <img [src]="liveCameraImage" class="image_liveCam" alt="Livekamera"/>
         </div>
       </div>
       <div class="item7">
@@ -130,7 +128,7 @@
       <div class="item9">
         <h3>Aktives Werkzeug</h3>
         <div class="imgContainer">
-          <img [src]="toolInSpindleImage" class="image_Preview">
+          <img [src]="toolInSpindleImage" class="image_Preview" alt="Werkzeugbild"/>
         </div>
         <table>
           <tr>

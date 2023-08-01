@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MachineMainStateService} from "../service/machine-main-state.service";
 import {MachineInformationService} from "../service/machine-information.service";
 import {MachineStateService} from "../service/machine-state.service";
