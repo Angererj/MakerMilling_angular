@@ -1,9 +1,9 @@
 <div class="session-table-container">
   <div class="session-collection">
 
-    <span class="noSessionsText" *ngIf="isEmpty">Keine Sessions vorhanden</span>
+    <span class="noSessionsText" *ngIf="sessionsIsEmpty">Keine Sessions vorhanden</span>
 
-    <div class="session-item" *ngFor="let item of dataEntry">
+    <div class="session-item" *ngFor="let item of sessionDataEntry">
       <div class="session-item-row">
         <span>Start:</span>
 

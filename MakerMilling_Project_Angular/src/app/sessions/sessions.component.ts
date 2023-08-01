@@ -11,33 +11,38 @@ import {MachineMainStateService} from "../service/machine-main-state.service";
   styleUrls: ['./sessions.component.css']
 })
 export class SessionsComponent implements OnInit {
-  isEmpty: any;
-  dataEntry: any;
+  //declare variables
+  sessionsIsEmpty: any;
+  sessionDataEntry: any;
   fullname: string = "";
 
-  constructor(private datatableService: DatatableService, private userService: UserService, private router: Router, private MainStateService: MachineMainStateService) {
+  //get router and services in constructor
+  constructor(private datatableService: DatatableService,
+              private userService: UserService,
+              private router: Router,
+              private MainStateService: MachineMainStateService) {
   }
 
+  //logout
   logOut() {
     setUserAuthenticated(false)
+    //navigate to loginpage
     this.router.navigate(['/login']);
 
   }
 
+  //on init execture services, get fullname, set interval to get datatable every 30 seconds
   ngOnInit() {
     this.MainStateService.executeAllServices();
     this.fullname = this.userService.getFullname();
     setInterval(() => this.datatableService.getDatatable(), 30000);
+    //execute getdatatable, subscribe to subject, return dataentry and isEmpty
     this.datatableService.getDatatable();
     this.datatableService.dataSubject.subscribe(data => {
-      this.dataEntry = data.rows;
-      this.dataEntry = this.dataEntry.filter((entry: { fullname: string; }) => entry.fullname === this.fullname);
-      if (this.dataEntry.length == 0) {
-        this.isEmpty = true
-      } else {
-        this.isEmpty = false
-      }
-      this.dataEntry = this.dataEntry.filter((entry: { fullname: string; }) => entry.fullname !== "");
+      this.sessionDataEntry = data.rows;
+      this.sessionDataEntry = this.sessionDataEntry.filter((entry: { fullname: string; }) => entry.fullname === this.fullname);
+      this.sessionsIsEmpty = this.sessionDataEntry.length == 0;
+      this.sessionDataEntry = this.sessionDataEntry.filter((entry: { fullname: string; }) => entry.fullname !== "");
     })
   }
 }

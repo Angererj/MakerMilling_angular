@@ -11,25 +11,21 @@ import {MachineImagesService} from "./machine-images.service";
   providedIn: 'root'
 })
 export class MachineMainStateService {
-
+  //baseurl, appkey from environment
   private baseUrl: string = environment.baseUrl;
-
   private appKey: string = environment.appKey;
 
+  //machine is active boolean
   private _globalMachineState: boolean = false;
 
 
   get globalMachineState(): boolean {
+    //returns machinestate boolean
     return this._globalMachineState;
   }
 
   public executeAllServices() {
-    this.machineInformationService.getMachineType();
-    this.machineInformationService.getMachineNumber();
-    this.machineInformationService.getMachineSoftwareVersion();
-    this.machineInformationService.getMachineRequiresTraining();
-    this.machineInformationService.getMachineLocation();
-    this.machineInformationService.getMachineFloor();
+    //executes all services
     this.machineStateService.getFabmanIsActive();
     this.machineStateService.getRuntimeCombined();
     this.machineStateService.getLastNotificationMessage();
@@ -58,14 +54,31 @@ export class MachineMainStateService {
     this.machineCurrentToolService.getToolArticleNumber();
     this.machineCurrentToolService.getToolDominatingProperty();
     this.machineCurrentToolService.getToolImageUrl();
+    //images without livecamera, because camera is executed every 1 second
     this.machineImageService.getToolInSpindleImage();
     this.machineImageService.getProgramPreviewImage();
   }
 
   public executeImageOneSecond() {
-    this.machineImageService.getLiveCameraFeed();
+    //execute if machineisactive and userisloggedin
+    if (this._globalMachineState && environment.userIsAuthenticated){
+      this.machineImageService.getLiveCameraFeed();
+    }
   }
 
+  public getMachineInformationOnStartup(){
+    //get machineInfos on startup if machineisactive and user is logged in
+    if (this._globalMachineState && environment.userIsAuthenticated){
+      this.machineInformationService.getMachineType();
+      this.machineInformationService.getMachineNumber();
+      this.machineInformationService.getMachineSoftwareVersion();
+      this.machineInformationService.getMachineRequiresTraining();
+      this.machineInformationService.getMachineLocation();
+      this.machineInformationService.getMachineFloor();
+    }
+  }
+
+  //get httpclient, services
   constructor(private http: HttpClient,
               private machineInformationService: MachineInformationService,
               private machineStateService: MachineStateService,
@@ -74,7 +87,7 @@ export class MachineMainStateService {
               private machineImageService: MachineImagesService) {
   }
 
-
+  //check if machine is active
   public getGlobalMachineIsActive() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMainStateMachine.Thing/Properties/globalMachineIsActive';
     const headers = new HttpHeaders({
@@ -86,7 +99,8 @@ export class MachineMainStateService {
     this.http.get<any>(url, {'headers': headers}).subscribe(
       (result) => {
         this._globalMachineState = result.rows[0].globalMachineIsActive;
-        if (this._globalMachineState == true) {
+        //if machine is active execute all services
+        if (this._globalMachineState && environment.userIsAuthenticated) {
           this.executeAllServices();
         } else {
           //console.log("Maschine ist nicht erreichbar.");

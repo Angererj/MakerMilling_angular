@@ -20,5 +20,6 @@ import {Component, Input} from '@angular/core';
   `],
 })
 export class PopupComponent {
+  //component placed on top of dashboard only loaded when globalmachineactive is false
   @Input() errorMessage: string = '';
 }

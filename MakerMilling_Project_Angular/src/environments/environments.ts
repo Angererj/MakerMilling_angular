@@ -12,6 +12,7 @@ export const environment = {
   userIsAuthenticated: false
 };
 
+//change user is authenticated to passed boolean value
 export function setUserAuthenticated(isAuthenticated: boolean): void {
   environment.userIsAuthenticated = isAuthenticated;
 }

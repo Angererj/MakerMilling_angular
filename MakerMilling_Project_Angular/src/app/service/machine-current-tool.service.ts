@@ -7,19 +7,22 @@ import {environment} from "../../environments/environments";
   providedIn: 'root'
 })
 export class MachineCurrentToolService {
-
+  //get baseurl, appkey from environment
   private baseUrl: string = environment.baseUrl;
   private appKey: string = environment.appKey;
 
+  //implement subjects
   toolArticleNumber = new Subject<string>();
   toolDominatingProperty = new Subject<string>();
   toolImageUrl = new Subject<string>();
   toolDescription = new Subject<string>();
   toolName = new Subject<string>();
 
+  //get httpclient
   constructor(private http: HttpClient) {
   }
 
+  //get toolarticlenumber, pass result to subject
   public getToolArticleNumber() {
     const url = this.baseUrl + 'JA_SE.MakerMillingCurrentTool.Thing/Properties/articleNumber';
     const headers = new HttpHeaders({
@@ -32,6 +35,7 @@ export class MachineCurrentToolService {
     });
   }
 
+  //get tooldominatingproperty, pass result to subject
   public getToolDominatingProperty() {
     const url = this.baseUrl + 'JA_SE.MakerMillingCurrentTool.Thing/Properties/dominatingProperty';
     const headers = new HttpHeaders({
@@ -44,6 +48,7 @@ export class MachineCurrentToolService {
     });
   }
 
+  //get toolimageurl, pass result to subject
   public getToolImageUrl() {
     const url = this.baseUrl + 'JA_SE.MakerMillingCurrentTool.Thing/Properties/imageUrl';
     const headers = new HttpHeaders({
@@ -56,6 +61,7 @@ export class MachineCurrentToolService {
     });
   }
 
+  //get tooldescription, pass result to subject
   public getToolDescription() {
     const url = this.baseUrl + 'JA_SE.MakerMillingCurrentTool.Thing/Properties/toolDescription';
     const headers = new HttpHeaders({
@@ -68,6 +74,7 @@ export class MachineCurrentToolService {
     });
   }
 
+  //get toolname, pass result to subject
   public getToolName() {
     const url = this.baseUrl + 'JA_SE.MakerMillingCurrentTool.Thing/Properties/toolName';
     const headers = new HttpHeaders({

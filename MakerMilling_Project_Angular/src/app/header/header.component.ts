@@ -10,22 +10,27 @@ import {MachineStateService} from "../service/machine-state.service";
 })
 export class HeaderComponent implements OnInit {
 
+  //create variable
   machineRGBState = "";
 
-  constructor(private machineStateService: MachineStateService, private router: Router) {
+  //import router and machineState service
+  constructor(private machineStateService: MachineStateService,
+              private router: Router) {
   }
 
+  //logout on button 'abmelden' clicked and userisathenticated false - navigate to login page
   logOut() {
     setUserAuthenticated(false);
     this.router.navigate(['/login']);
   }
 
+  //oninit subscribe to subject
   ngOnInit() {
-
     this.machineStateService.machineStatusLight.subscribe(value => {
       this.machineRGBState = value;
     })
   }
 
+  //implement environment with readonly
   protected readonly environment = environment;
 }

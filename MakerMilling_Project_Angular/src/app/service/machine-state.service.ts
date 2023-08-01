@@ -7,10 +7,11 @@ import {environment} from "../../environments/environments";
   providedIn: 'root'
 })
 export class MachineStateService {
-
+  //baseurl, appkey from environment
   private baseUrl: string = environment.baseUrl
   private appKey: string = environment.appKey;
 
+  //create new subjects
   tankPressureInput = new Subject<string>();
   tankPressureOutput = new Subject<string>();
   fabmanIsActive = new Subject<string>();
@@ -26,9 +27,11 @@ export class MachineStateService {
   machineVacuumIsActived = new Subject<string>();
   machineVacuumPressure = new Subject<string>();
 
+  //get httpclient
   constructor(private http: HttpClient) {
   }
 
+  //get fabman is active, pass result to subject
   public getFabmanIsActive() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/fabmanIsActive';
     const headers = new HttpHeaders({
@@ -41,6 +44,7 @@ export class MachineStateService {
     });
   }
 
+  //get runtimecombined, pass result to subject
   public getRuntimeCombined() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/formattedRuntimeCombined';
     const headers = new HttpHeaders({
@@ -53,6 +57,7 @@ export class MachineStateService {
     });
   }
 
+  //get lastnotificationmessage, pass result to subject
   public getLastNotificationMessage() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/latestNotificationMessage';
     const headers = new HttpHeaders({
@@ -65,6 +70,7 @@ export class MachineStateService {
     });
   }
 
+  //get lastnotificationtype, pass result to subject
   public getLastNotificationType() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/latestNotificationType';
     const headers = new HttpHeaders({
@@ -77,6 +83,7 @@ export class MachineStateService {
     });
   }
 
+  //get livecameraUrl, pass result to subject
   public getLiveFeedImageUrl() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/liveFeedImageUrl';
     const headers = new HttpHeaders({
@@ -89,6 +96,7 @@ export class MachineStateService {
     });
   }
 
+  //get machineisactive, pass result to subject
   public getMachineIsActive() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineIsActive';
     const headers = new HttpHeaders({
@@ -101,6 +109,7 @@ export class MachineStateService {
     });
   }
 
+  //get spraysystemtank, pass result to subject
   public getSpraySystemTank1Empty() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineSpraysystemTank1Empty';
     const headers = new HttpHeaders({
@@ -113,6 +122,7 @@ export class MachineStateService {
     });
   }
 
+  //get spraysystemtank2, pass result to subject
   public getSpraySystemTank2() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineSpraySystemTank2';
     const headers = new HttpHeaders({
@@ -125,6 +135,7 @@ export class MachineStateService {
     });
   }
 
+  //get executionstate, pass result to subject
   public getMachineExecutionState() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineState';
     const headers = new HttpHeaders({
@@ -137,6 +148,7 @@ export class MachineStateService {
     });
   }
 
+  //get machinestatuslight, pass result to subject
   public getMachineStatusLight() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/rgbStringVuforia';
     const headers = new HttpHeaders({
@@ -149,6 +161,7 @@ export class MachineStateService {
     });
   }
 
+  //get tankpressureinput, pass result to subject
   public getMachineTankPressureInput() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineTankPressureInput';
     const headers = new HttpHeaders({
@@ -161,6 +174,7 @@ export class MachineStateService {
     });
   }
 
+  //get tankpressureoutput, pass result to subject
   public getMachineTankPressureOutput() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineTankPressureOutput';
     const headers = new HttpHeaders({
@@ -173,6 +187,7 @@ export class MachineStateService {
     });
   }
 
+  //get vacuumisactivated, pass result to subject
   public getMachineVacuumIsActivated() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineVacuumIsActivated';
     const headers = new HttpHeaders({
@@ -185,6 +200,7 @@ export class MachineStateService {
     });
   }
 
+  //get vacuumpressure, pass result to subject
   public getMachineVacuumPressure() {
     const url = this.baseUrl + 'JA_SE.MakerMillingMachineState.Thing/Properties/machineVacuumPressure';
     const headers = new HttpHeaders({

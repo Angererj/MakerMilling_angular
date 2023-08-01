@@ -4,11 +4,13 @@ import {environment} from "../environments/environments";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  //get router in constructor
   constructor(private router: Router) {
   }
 
   canActivate(): boolean {
-    if (environment.userIsAuthenticated == true) {
+    //check if user is authenticated, else return to login page
+    if (environment.userIsAuthenticated) {
       return true;
     } else {
       this.router.navigate(['/login']);

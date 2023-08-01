@@ -7,10 +7,11 @@ import {environment} from "../../environments/environments";
   providedIn: 'root'
 })
 export class MachineInformationService {
-
+  //get baseurl, appkey from environment
   private baseUrl = environment.baseUrl
   private appKey = environment.appKey;
 
+  //create new subjects
   machineType = new Subject<string>();
   machineNumber = new Subject<string>();
   machineLocation = new Subject<string>();
@@ -18,9 +19,11 @@ export class MachineInformationService {
   machineSoftwareVersion = new Subject<string>();
   machineRequiresTraining = new Subject<string>();
 
+  //get httpclient
   constructor(private http: HttpClient) {
   }
 
+  //get machinetype, pass result to subject
   public getMachineType() {
     const url = this.baseUrl + 'JA_SE.MakerMillingInformations.Thing/Properties/machineType';
     const headers = new HttpHeaders({
@@ -33,6 +36,7 @@ export class MachineInformationService {
     });
   }
 
+  //get machinenumber, pass result to subject
   public getMachineNumber() {
     const url = this.baseUrl + 'JA_SE.MakerMillingInformations.Thing/Properties/machineNumber';
     const headers = new HttpHeaders({
@@ -45,6 +49,7 @@ export class MachineInformationService {
     });
   }
 
+  //get machinelocation, pass result to subject
   public getMachineLocation() {
     const url = this.baseUrl + 'JA_SE.MakerMillingInformations.Thing/Properties/machineLocation';
     const headers = new HttpHeaders({
@@ -57,6 +62,7 @@ export class MachineInformationService {
     });
   }
 
+  //get machinefloor, pass result to subject
   public getMachineFloor() {
     const url = this.baseUrl + 'JA_SE.MakerMillingInformations.Thing/Properties/machineOnFloor';
     const headers = new HttpHeaders({
@@ -69,6 +75,7 @@ export class MachineInformationService {
     });
   }
 
+  //get softwareversion, pass result to subject
   public getMachineSoftwareVersion() {
     const url = this.baseUrl + 'JA_SE.MakerMillingInformations.Thing/Properties/machineNextSoftwareVersion';
     const headers = new HttpHeaders({
@@ -81,6 +88,7 @@ export class MachineInformationService {
     });
   }
 
+  //get trainingisrequired, pass result to subject
   public getMachineRequiresTraining() {
     const url = this.baseUrl + 'JA_SE.MakerMillingInformations.Thing/Properties/requiresTraining';
     const headers = new HttpHeaders({
