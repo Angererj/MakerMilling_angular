@@ -3,16 +3,27 @@ import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-popup',
   template: `
-    <div class="popup">
-      <p>{{ errorMessage }}</p>
+    <div class="overlay">
+      <div class="popup">
+        <p>{{ errorMessage }}</p>
+      </div>
     </div>
   `,
   styles: [`
-    .popup {
+    .overlay {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent gray background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      position: relative;
       background-color: white;
       border: 1px solid #ccc;
       padding: 20px;

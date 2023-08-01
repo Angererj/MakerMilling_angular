@@ -3,7 +3,7 @@
 
   <div class="innerContent">
     <div class="grid-container">
-      <div class="item1">
+      <div class="itemInformations">
         <h3>Informationen</h3>
         <table>
           <tr>
@@ -29,7 +29,7 @@
         </table>
 
       </div>
-      <div class="item2">
+      <div class="itemActiveProgram">
         <h3>Aktives Programm</h3>
         <div class="imgContainer">
           <img
@@ -69,11 +69,11 @@
           </table>
         </div>
       </div>
-      <div class="item3">
+      <div class="itemNotification">
         <p class="infoText">{{notificationType}}</p>
         <p class="underleadingText">{{notificationMessage}}</p>
       </div>
-      <div class="item4">
+      <div class="itemPressure">
         <h3>Druck</h3>
         <table>
           <tr>
@@ -93,7 +93,7 @@
           </tr>
         </table>
       </div>
-      <div class="item5">
+      <div class="itemTanks">
         <h3>Sprühsystem</h3>
         <table>
           <tr>
@@ -110,22 +110,21 @@
           </tr>
         </table>
       </div>
-      <div class="item6">
+      <div class="itemCamera">
         <h3>Kamera</h3>
         <div class="imageContainer">
           <img [src]="liveCameraImage" class="image_liveCam" alt="Livekamera"/>
         </div>
       </div>
-      <div class="item7">
+      <div class="itemSpindle">
         <p class="infoText">Bewegungszeit der Spindel</p>
         <p class="underleadingText">{{runtimeCombined}}</p>
       </div>
-      <div class="item8">
+      <div class="itemState">
         <div id="status-light__status" [ngStyle]="{'background-color': machineRGBState}"></div>
-        <!-- Content -->
         <div class="status-light__content">{{machineState}}</div>
       </div>
-      <div class="item9">
+      <div class="itemTool">
         <h3>Aktives Werkzeug</h3>
         <div class="imgContainer">
           <img [src]="toolInSpindleImage" class="image_Preview" alt="Werkzeugbild"/>
