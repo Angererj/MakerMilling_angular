@@ -24,7 +24,7 @@ export class MachineStateService {
   machineIsActive = new Subject<string>();
   machineExecutionState = new Subject<string>();
   machineStatusLight = new Subject<string>();
-  machineVacuumIsActived = new Subject<string>();
+  machineVacuumIsActivated = new Subject<string>();
   machineVacuumPressure = new Subject<string>();
 
   //get httpclient
@@ -196,7 +196,7 @@ export class MachineStateService {
       'accept': 'application/json'
     });
     this.http.get<any>(url, {'headers': headers}).pipe(debounceTime(10)).subscribe(result => {
-      this.machineVacuumIsActived.next(result.rows[0].machineVacuumIsActivated);
+      this.machineVacuumIsActivated.next(result.rows[0].machineVacuumIsActivated);
     });
   }
 
