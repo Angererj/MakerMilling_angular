@@ -34,7 +34,7 @@
         <div class="imgContainer">
           <img
             *ngIf="programPreviewImage != 'data:image/png;base64,' && programPreviewImage != 'data:image/png;base64,eyJ0eXBlIjoiaHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzcyMzEjc2VjdGlvbi02LjUu'"
-            [src]="programPreviewImage" class="image_Preview" alt="Programvorschau"/>
+            [src]="programPreviewImage" class="image_Preview" alt="Programmvorschau"/>
           <p
             *ngIf="programPreviewImage == 'data:image/png;base64,' || programPreviewImage == 'data:image/png;base64,eyJ0eXBlIjoiaHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzcyMzEjc2VjdGlvbi02LjUu'"
             class="image_warning">Kein Bild verfügbar</p>
@@ -55,16 +55,15 @@
             </tr>
             <tr>
               <th>Name:</th>
-
               <td>{{activeProgramName}}</td>
             <tr>
             <tr>
               <th>Dateityp:</th>
-              <td>{{activeProgramType}}</td>
+              <td *ngIf="this.activeProgramName != 'Kein Programm geladen'">{{activeProgramType}}</td>
             </tr>
             <tr>
               <th>Speicherort:</th>
-              <td>{{activeProgramDirectory}}</td>
+              <td *ngIf="this.activeProgramName != 'Kein Programm geladen'">{{activeProgramDirectory}}</td>
             </tr>
           </table>
         </div>

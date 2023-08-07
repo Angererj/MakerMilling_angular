@@ -22,16 +22,16 @@ export class UserService {
   userUrl = environment.userUrl;
   //create new subject, delare variable
   errorMsgSubject = new Subject<string>();
-  private fullname: any;
+  private fullName: any;
 
   setFullname(data: string): void {
-    //set fullname
-    this.fullname = data;
+    //set fullName
+    this.fullName = data;
   }
 
   getFullname(): any {
-    //get fullname
-    return this.fullname;
+    //get fullName
+    return this.fullName;
   }
 
   //check if user is valid
@@ -73,7 +73,16 @@ export class UserService {
     });
     this.http.get<any>(url, {'headers': headers}).pipe(debounceTime(10)).subscribe({
       next: (result) => {
-        this.setFullname(result.rows[0].firstName + " " + result.rows[0].lastName);
+        //sets fullname for sessions to logged in user and reformats thingworx name to valid username for query, if needed
+        //if firstname and lastname are set in thingworx then it uses this as name for query
+        let name = '';
+        if(result.rows[0].firstName === '' || result.rows[0].lastName === ''){
+          name = this.transformName(result.rows[0].name);
+        }else {
+          name = `${result.rows[0].firstName} ${result.rows[0].lastName}`;
+        }
+        //set name for user
+        this.setFullname(name);
         //navigate to dashboard
         this.router.navigate(['/dashboard']);
       },
@@ -81,5 +90,19 @@ export class UserService {
         console.log(err)
       }
     });
+  }
+
+  //changes thingworx username format from "max.mustermann" to "Max Mustermann"
+  transformName(name: string): string {
+    const parts = name.split('.');
+    if (parts.length !== 2) {
+      throw new Error('Ungueltiges Format des Namens.');
+    }
+
+    const [firstName, lastName] = parts;
+    const formattedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+    const formattedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+
+    return `${formattedFirstName} ${formattedLastName}`;
   }
 }

@@ -13,6 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "./auth.guard";
 import {HeaderComponent} from './header/header.component';
 import {PopupComponent} from './popup/popup.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
