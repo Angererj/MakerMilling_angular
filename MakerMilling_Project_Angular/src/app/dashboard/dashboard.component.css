@@ -158,7 +158,7 @@ th {
 }
 
 #status-light__status {
-
+  border: 1px solid #000000;
   border-radius: 9999px;
   height: 2rem;
   width: 2rem;
@@ -196,15 +196,15 @@ th {
   }
 
   .content {
-    padding-top: 20vh;
+    padding-top: 10vh;
   }
 
   .grid-container > div {
     width: auto;
+    margin: -25px 0;
   }
 
   .grid-container {
-
     background: #d7d7d7;
     height: auto;
     grid-template-areas:
@@ -306,4 +306,9 @@ tr {
 
 .scrollableTableContainer td {
   white-space: nowrap;
+}
+@media screen and (max-width: 769px) {
+  .content {
+    padding-top: 20vh;
+  }
 }
