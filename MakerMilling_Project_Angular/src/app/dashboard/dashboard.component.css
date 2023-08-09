@@ -27,7 +27,7 @@
     'info info  pressure pressure spraysystem    spraysystem spraysystem   status status'
     'activeprogram activeprogram activeprogram livecam livecam livecam  livecam activetool activetool'
     'activeprogram activeprogram activeprogram livecam livecam livecam livecam activetool activetool';
-  padding: 1.5vw;
+  padding: 1.5vw 1.5vw 1.5vw 0.5vw;
   gap: 0.5vw 1.5vw;
   grid-template-rows: 10vh;
   grid-template-columns: repeat(9, 1fr); /* Updated grid-template-columns */
@@ -46,12 +46,7 @@
   width: 100%;
 }
 
-.grid-container > .itemInformations > table {
-  width: 90%;
-  margin-left: 10%;
-  height: 90%;
-  padding-bottom: 1vh;
-}
+
 
 .grid-container > div > h3 {
   width: 100%;
@@ -64,6 +59,7 @@ th {
 
 .innerContent {
   width: 100%;
+
 }
 
 .content {
@@ -74,6 +70,7 @@ th {
 
 .itemActiveProgram > .image_Preview {
   width: 30%;
+  max-height: 340px;
 }
 
 .itemActiveProgram > table {
@@ -104,17 +101,9 @@ th {
   padding-left: 10%;
 }
 
-.itemPressure > table {
-  width: 70%;
-  height: 70%;
-  margin-left: 10%;
-}
 
-.itemTanks > table {
-  width: 70%;
-  height: 70%;
-  margin-left: 10%;
-}
+
+
 
 .itemCamera {
   grid-area: livecam;
@@ -201,25 +190,26 @@ th {
 
   .grid-container > div {
     width: auto;
-    margin: -25px 0;
+    height: fit-content;
   }
 
   .grid-container {
     background: #d7d7d7;
     height: auto;
     grid-template-areas:
-      'info'
-         'status'
-      'activeprogram'
       'logMessage'
+      'info'
+      'status'
       'pressure'
       'spraysystem'
       'livecam'
+      'activetool'
+      'activeprogram'
       'spindletime'
-      'activetool';
+  ;
     grid-template-rows: auto;
     grid-template-columns: 1fr;
-    gap: 5vh;
+    gap: 10px;
   }
 
   .itemTool {
@@ -241,8 +231,8 @@ th {
     padding: 2vh
   }
 
-  .itemInformations {
-    margin-top: 5vh;
+  .itemNotification {
+    margin-top: 3vh;
   }
 }
 
@@ -312,3 +302,21 @@ tr {
     padding-top: 20vh;
   }
 }
+.itemPressure > table {
+  width: 100%;
+  padding-left: 1vw;
+}
+
+.grid-container > .itemInformations > table {
+  width: 100%;
+  padding-left: 1vw;
+  padding-top: 1vw;
+
+}
+.itemTanks > table {
+  padding-top: 1vw;
+  width: 100%;
+  padding-left: 1vw;
+
+}
+
