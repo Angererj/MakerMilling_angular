@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
   liveCameraImage = "";
 
   //errorMessages Popup
-  popupErrorMessage = "Maschine ist nicht erreichbar, stellen Sie sicher, dass diese eingeschaltet und mit dem Netzwerk verbunden ist.";
+  popupErrorMessage = "Maschine ist nicht erreichbar. Stellen Sie sicher, dass diese eingeschaltet und mit dem Netzwerk verbunden ist.";
 
   //import all services in constructor
   constructor(public machineMainStateService: MachineMainStateService,
@@ -65,11 +65,20 @@ export class DashboardComponent implements OnInit {
               private imageService: MachineImagesService) {
   }
 
+  async delay(ms: number) {
+    await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then(()=> {});
+  }
+
   ngOnInit() {
     //check if machine is active
     this.machineMainStateService.getGlobalMachineIsActive();
-    //get machineinformations once on load
-    this.machineMainStateService.getMachineInformationOnStartup();
+    //delay 500 ms to wait for globalmachineisactive to be finished
+    //if not information will not be displayed until page is changed
+    this.delay(500).then(any=>{
+      //get machineinformations once on load
+      this.machineMainStateService.getMachineInformationOnStartup();
+    });
+
     //set interval to check if machine is active every 2 seconds
     setInterval(() => this.machineMainStateService.getGlobalMachineIsActive(), 2000);
     //set interval to load live camera image every 1 second
@@ -194,7 +203,9 @@ export class DashboardComponent implements OnInit {
       this.programPreviewImage = value;
     });
     this.imageService.liveCameraImage.subscribe(value => {
-      this.liveCameraImage = value;
+      if(value.trim() !== '' && value !== 'data:image/png;base64,'){
+        this.liveCameraImage = value;
+      }
     });
   }
 }

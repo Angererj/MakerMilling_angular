@@ -14,6 +14,7 @@ import {AuthGuard} from "./auth.guard";
 import {HeaderComponent} from './header/header.component';
 import {PopupComponent} from './popup/popup.component';
 import {MatButtonModule} from "@angular/material/button";
+import {NgOptimizedImage} from "@angular/common";
 
 
 const routes: Routes = [
@@ -32,16 +33,17 @@ const routes: Routes = [
     HeaderComponent,
     PopupComponent,
   ],
-  imports: [
-    BrowserModule,
-    MatGridListModule,
-    RouterModule.forRoot(routes),
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    MatButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        MatGridListModule,
+        RouterModule.forRoot(routes),
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        MatButtonModule,
+        NgOptimizedImage
+    ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
