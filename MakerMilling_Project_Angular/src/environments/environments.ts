@@ -7,7 +7,7 @@ export const environment = {
   toolInSpindleImageEntity: "JA_SE.MakerMillingToolInSpindleImage.Media",
   programPreviewImageEntity: "JA_SE.MakerMillingActiveProgramImage.Media",
   liveCameraImageEntity: "JA_SE.MakerMillingLiveCameraFeedImage.Media",
-  userIsAuthenticated: true
+  userIsAuthenticated: false
 };
 
 //change user is authenticated to passed boolean value
