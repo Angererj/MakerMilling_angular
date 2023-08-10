@@ -29,7 +29,7 @@ export class SessionsComponent implements OnInit {
     //execute getdatatable, subscribe to subject, return dataentry and isEmpty
     this.datatableService.getDatatable();
     this.datatableService.dataSubject.subscribe(data => {
-      this.sessionDataEntry = data.rows;
+      this.sessionDataEntry = data;
       this.sessionDataEntry = this.sessionDataEntry.filter((entry: { fullname: string; }) => entry.fullname === this.fullName);
       this.sessionsIsEmpty = this.sessionDataEntry.length == 0;
       this.sessionDataEntry = this.sessionDataEntry.filter((entry: { fullname: string; }) => entry.fullname !== "");

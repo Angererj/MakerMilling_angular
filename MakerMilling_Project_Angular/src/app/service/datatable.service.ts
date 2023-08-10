@@ -11,6 +11,7 @@ export class DatatableService {
   baseUrl = environment.baseUrl;
   appKey = environment.appKey;
   dataSubject = new Subject<any>();
+   dataEntries = [];
 
   constructor(private http: HttpClient) {
   }
@@ -30,14 +31,32 @@ export class DatatableService {
       //headers passed directly as third parameter in post, body empty
       this.http.post(url, null, httpOptions).subscribe({
         next: (result) => {
-          //if datatable returned then write it to datasubject
-          this.dataSubject.next(result)
+          //if datatable returned then write it to datasubject and sort it ascending
+          // @ts-ignore
+          this.dataEntries=this.sortSessions(result.rows);
+          this.dataEntries.reverse();
+          this.dataSubject.next(this.dataEntries);
         },
         error: (error) => {
           //errormessage
           console.error(error);
         }
       });
+
     }
+  }
+  sortSessions(result: any) {
+    const loop = result.length;
+
+    for(let i = 0; i < loop; i++) {
+      for(let j = i+1; j < loop; j++) {
+        if(new Date(result[i].key) > new Date(result[j].key)) {
+          let temp = result[i];
+          result[i] = result[j];
+          result[j] = temp;
+        }
+      }
+    }
+    return result;
   }
 }

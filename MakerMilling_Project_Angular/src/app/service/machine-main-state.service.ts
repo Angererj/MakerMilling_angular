@@ -45,9 +45,6 @@ export class MachineMainStateService {
     this.machineActiveSessionService.getMachineActivatedProgramName();
     this.machineActiveSessionService.getMachineActivatedProgramDirectory();
     this.machineActiveSessionService.getMachineActivatedProgramType();
-    this.machineActiveSessionService.getMachineActivatedProgramExecutionTime();
-    this.machineActiveSessionService.getMachineActivatedProgramExecutionTimeLeft();
-    this.machineActiveSessionService.getMachineActivatedProgramProgress();
     this.machineActiveSessionService.getMachineActivatedProgramPreviewImage();
     this.machineCurrentToolService.getToolName();
     this.machineCurrentToolService.getToolDescription();
@@ -63,6 +60,9 @@ export class MachineMainStateService {
     //execute if machineisactive and userisloggedin
     if (this._globalMachineState && environment.userIsAuthenticated){
       this.machineImageService.getLiveCameraFeed();
+      this.machineActiveSessionService.getMachineActivatedProgramExecutionTime();
+      this.machineActiveSessionService.getMachineActivatedProgramExecutionTimeLeft();
+      this.machineActiveSessionService.getMachineActivatedProgramProgress();
     }
   }
 
