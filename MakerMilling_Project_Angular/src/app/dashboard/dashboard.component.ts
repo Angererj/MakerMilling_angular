@@ -102,33 +102,6 @@ export class DashboardComponent implements OnInit {
       this.machineVacuum = value;
     });
     this.machineStateService.machineExecutionState.subscribe(value => {
-      //translate machine execution-state to german
-      switch (value) {
-        case "Init":
-          value = 'Initialisieren';
-          break;
-        case "Preparing":
-          value = 'Vorbereiten';
-          break;
-        case "Idle":
-          value = 'Leerlauf'
-          break;
-        case "Running":
-          value = 'Aktiv';
-          break;
-        case  "Manual":
-          value = 'Handbetrieb';
-          break;
-        case "Aborted":
-          value = 'Abgebrochen';
-          break;
-        case "Transient":
-          value = 'Undefiniert';
-          break;
-        case "WaitingForUserInput":
-          value = 'Warten auf Benutzereingabe';
-          break;
-      }
       this.machineState = value;
     });
     this.machineStateService.machineStatusLight.subscribe(value => {
