@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
     this.machineMainStateService.getGlobalMachineIsActive();
     //delay 500 ms to wait for globalmachineisactive to be finished
     //if not information will not be displayed until page is changed
-    this.delay(500).then(any=>{
+    this.delay(1000).then(any=>{
       //get machineinformations once on load
       this.machineMainStateService.getMachineInformationOnStartup();
     });
