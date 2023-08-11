@@ -1,6 +1,6 @@
 <div class="form-container">
   <form [formGroup]="regForm" class="my-form">
-    <h3>Maker Milling <br/> (Thingworx Login)</h3>
+    <h3>Maker Milling</h3>
     <div class="form-group">
       <span *ngIf="!regForm.get('username')?.valid && regForm.get('username')?.touched">Gib deinen Thingworx Benutzernamen ein.</span>
       <input type="text" placeholder="Benutzername" formControlName="username">
