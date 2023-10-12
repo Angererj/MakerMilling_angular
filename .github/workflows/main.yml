@@ -16,7 +16,7 @@ jobs:
           uses: svenstaro/upload-release-action@v2
           with:
             repo_token: ${{ secrets.GITHUB_TOKEN }}
-            file: src
+            file: MakerMilling_Project_Angular/src
             tag: latest
             release_name: Release ${{ github.run_number }}
             overwrite: true 
