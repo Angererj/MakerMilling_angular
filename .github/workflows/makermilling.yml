@@ -42,6 +42,8 @@ jobs:
           cd MakerMilling_Project_Angular 
           npm run build
           cd dist
+          pwd
+          ls
           
       - name: Zip dist folder
         uses: montudor/action-zip@v1
