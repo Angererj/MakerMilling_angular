@@ -38,5 +38,7 @@ jobs:
           npm install
   
       - name: Build
-        run: npm run build:prod
+        run: |
+          ls
+          npm run build:prod
         
