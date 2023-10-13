@@ -26,8 +26,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-      - name: ls
-        run: ls
+      - name: Change Path
+        run: cd MakerMilling_Project_Angular
       - name: NPM Install
         run: npm install
       - name: NPM Install Angular
