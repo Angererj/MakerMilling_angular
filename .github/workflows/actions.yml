@@ -41,7 +41,7 @@ jobs:
         run: |
           cd MakerMilling_Project_Angular 
           npm run build
-          cd dist/angular
+          cd dist
           pwd
           ls
           
@@ -54,8 +54,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /home/runner/work/MakerMilling_angular/MakerMilling_angular/dist.zip
+          file: home/runner/work/MakerMilling_angular/MakerMilling_angular/angular/dist.zip
           tag: v0.0.${{ github.run_number }}
-          asset_name: dist.zip
+          asset_name: makermilling_dist.zip
           overwrite: true
           prerelease: true
