@@ -48,6 +48,11 @@ jobs:
         with:
           args: zip -qq -r dist.zip . -i angular
 
+      - name: Check path
+        run: |
+          pwd
+          ls
+
       - name: Upload zip file to release
         uses: svenstaro/upload-release-action@v2
         with:
