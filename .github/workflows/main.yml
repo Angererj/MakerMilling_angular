@@ -41,13 +41,16 @@ jobs:
         run: |
           cd MakerMilling_Project_Angular 
           npm run build
-          pwd
-          ls
           
       - name: Zip dist folder
         uses: montudor/action-zip@v1
         with:
           args: zip -qq -r dist.zip . -i dist/angular
+
+      - name: Check path
+        run: |
+          pwd
+          ls
           
       - name: Upload zip file to release
         uses: svenstaro/upload-release-action@v2
