@@ -41,4 +41,5 @@ jobs:
         run: |
           cd MakerMilling_Project_Angular 
           npm run build
+          cd dist
           ls
