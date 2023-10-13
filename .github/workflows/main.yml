@@ -40,6 +40,5 @@ jobs:
       - name: Build
         run: |
           cd MakerMilling_Project_Angular 
-          ls
           npm run build
-        
+          ls
