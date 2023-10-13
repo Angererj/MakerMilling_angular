@@ -44,6 +44,8 @@ jobs:
           
       - name: Zip
         run: |
+          pwd
+          ls
           cd dist
           zip -r dist.zip angular
           
