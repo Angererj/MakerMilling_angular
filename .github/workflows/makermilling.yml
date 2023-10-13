@@ -46,9 +46,14 @@ jobs:
       - name: Zip dist folder
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r dir.zip . -i dir
+          args: zip -qq -r dist.zip . -i dir
 
       - name: Upload zip file to release
-        run: |
-          pwd
-          ls
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: / home/runner/work/MakerMilling_angular/MakerMilling_angular/dist.zip
+          tag: v0.0.${{ github.run_number }}
+          asset_name: makerMilling.zip
+          overwrite: true
+          prerelease: true
