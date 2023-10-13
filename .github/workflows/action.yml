@@ -42,12 +42,10 @@ jobs:
           cd MakerMilling_Project_Angular 
           npm run build
           
-      - name: Zip
+      - name: Zip dist folder
         run: |
           cd MakerMilling_Project_Angular/dist
           zip -r dist.zip angular
-          pwd
-          ls
           
       - name: Upload zip file to release
         uses: svenstaro/upload-release-action@v2
