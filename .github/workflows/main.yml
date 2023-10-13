@@ -45,9 +45,9 @@ jobs:
       - name: Zip
         run: |
           cd MakerMilling_Project_Angular/dist
+          zip -r dist.zip angular
           pwd
           ls
-          zip -r dist.zip angular
           
       - name: Upload zip file to release
         uses: svenstaro/upload-release-action@v2
