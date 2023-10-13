@@ -53,7 +53,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /home/runner/work/MakerMilling_angular/MakerMilling_angular/dist.zip
+          file: /home/runner/work/MakerMilling_angular/MakerMilling_angular/MakerMilling_Project_Angular/dist/dist.zip
           tag: v0.0.${{ github.run_number }}
           asset_name: makermilling_dist.zip
           overwrite: true
