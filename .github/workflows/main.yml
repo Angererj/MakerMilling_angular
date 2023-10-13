@@ -17,8 +17,8 @@ jobs:
           with:
             repo_token: ${{ secrets.GITHUB_TOKEN }}
             file: MakerMilling_Project_Angular/src
-            tag: v.0.0.${{ github.run_number }}
-            release_name: v.0.0.${{ github.run_number }}
+            tag: v0.0.${{ github.run_number }}
+            release_name: v0.0.${{ github.run_number }}
             overwrite: true 
 
   build-push:
