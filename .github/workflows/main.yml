@@ -21,7 +21,7 @@ jobs:
             release_name: v0.0.${{ github.run_number }}
             overwrite: true 
 
-  build-push:
+  build-zip:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -41,5 +41,8 @@ jobs:
         run: |
           cd MakerMilling_Project_Angular 
           npm run build
-          cd dist
-          ls
+          
+      - name: Zip dist folder
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r dist.zip dist
